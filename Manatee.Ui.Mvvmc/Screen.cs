@@ -8,8 +8,6 @@ namespace Manatee.Ui.Mvvmc
 	/// </summary>
 	public abstract class Screen : InitializableViewModel, IScreen, IChild
 	{
-		private static readonly ILog _log = LogManager.GetLog(typeof(Screen));
-
 		private bool _isActive;
 		private object _parent;
 		private bool _hasBeenActivated;
@@ -116,7 +114,7 @@ namespace Manatee.Ui.Mvvmc
 		{
 			return Task.Run(() =>
 				{
-					_log.Info("Activating first time {0}.", this);
+					this.Log().Info("Activating first time {0}.", this);
 					RaiseEvent(FirstActivation);
 				});
 		}
@@ -128,7 +126,7 @@ namespace Manatee.Ui.Mvvmc
 		{
 			return Task.Run(() =>
 				{
-					_log.Info("Activating {0}.", this);
+					this.Log().Info("Activating {0}.", this);
 					RaiseEvent(Activated, new ActivationEventArgs(firstActivation));
 				});
 		}
@@ -140,13 +138,13 @@ namespace Manatee.Ui.Mvvmc
 		/// <returns>true if deactivation may proceed; false otherwise.</returns>
 		protected virtual async Task<bool> OnAttemptingDeactivation(bool close)
 		{
-			_log.Info("Attempting Deactivation of {0}", this);
+			this.Log().Info("Attempting Deactivation of {0}", this);
 			var args = new AttemptingDeactivationEventArgs();
 			RaiseEvent(AttemptingDeactivation, args);
 
 			var shouldDeactivate = !args.Cancel && close && await CanClose();
 			if (!shouldDeactivate)
-				_log.Info("Could not deactivate {0}", this);
+				this.Log().Info("Could not deactivate {0}", this);
 
 			return shouldDeactivate;
 		}
@@ -159,10 +157,10 @@ namespace Manatee.Ui.Mvvmc
 		{
 			if (!await OnAttemptingDeactivation(close)) return;
 
-			_log.Info("Deactivating {0}.", this);
+			this.Log().Info("Deactivating {0}.", this);
 			RaiseEvent(Deactivated, new DeactivationEventArgs(close));
 			if (close)
-				_log.Info("Closed {0}.", this);
+				this.Log().Info("Closed {0}.", this);
 		}
 	}
 }

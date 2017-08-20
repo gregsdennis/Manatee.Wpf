@@ -18,7 +18,7 @@ namespace Manatee.Ui.Mvvmc
 		///   Executes the action on the UI thread asynchronously.
 		/// </summary>
 		/// <param name="action">The action to execute.</param>
-		public static Task BeginOnUiThread([NotNull] this Action action)
+		public static Task BeginOnUiThread([NotNull] this Func<Task> action)
 		{
 			if (action == null) throw new ArgumentNullException(nameof(action));
 

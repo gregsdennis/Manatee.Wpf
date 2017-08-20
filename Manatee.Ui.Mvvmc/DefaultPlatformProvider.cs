@@ -33,9 +33,9 @@ namespace Manatee.Ui.Mvvmc
 		///   Executes the action on the UI thread asynchronously.
 		/// </summary>
 		/// <param name="action">The action to execute.</param>
-		public Task BeginOnUiThread(Action action)
+		public Task BeginOnUiThread(Func<Task> action)
 		{
-			return Task.Run(action);
+			return action();
 		}
 
 		/// <summary>

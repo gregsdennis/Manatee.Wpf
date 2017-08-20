@@ -20,7 +20,7 @@ namespace Manatee.Ui.Mvvmc
 		///   Executes the action on the UI thread asynchronously.
 		/// </summary>
 		/// <param name="action">The action to execute.</param>
-		Task BeginOnUiThread([NotNull] Action action);
+		Task BeginOnUiThread([NotNull] Func<Task> action);
 
 		/// <summary>
 		///   Executes the action on the UI thread.
