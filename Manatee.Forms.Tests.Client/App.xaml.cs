@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace Manatee.Forms.Tests.Client
+namespace Manatee.Wpf.Tests.Client
 {
 	/// <summary>
 	/// Interaction logic for App.xaml

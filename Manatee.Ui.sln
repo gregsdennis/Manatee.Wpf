@@ -13,7 +13,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Manatee.Wpf.Forms", "Manate
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Manatee.Wpf.Forms.ViewModel", "Manatee.Wpf.Forms.ViewModel\Manatee.Wpf.Forms.ViewModel.csproj", "{3142E4C0-13E3-4431-A988-4BBAC7B26C66}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Manatee.Forms.Tests.Client", "Manatee.Forms.Tests.Client\Manatee.Forms.Tests.Client.csproj", "{AA126645-63F4-44A6-A972-C3ED99084DE3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Manatee.Wpf.Tests.Client", "Manatee.Forms.Tests.Client\Manatee.Wpf.Tests.Client.csproj", "{AA126645-63F4-44A6-A972-C3ED99084DE3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Manatee.Wpf.MessageBox.ViewModel", "Manatee.Wpf.MessageBox.ViewModel\Manatee.Wpf.MessageBox.ViewModel.csproj", "{AF92DDF9-C463-46D7-92E6-151B577A178C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Manatee.Wpf.MessageBox", "Manatee.Wpf.MessageBox\Manatee.Wpf.MessageBox.csproj", "{B5119883-871D-46F7-9D16-E31A4D954B08}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +45,14 @@ Global
 		{AA126645-63F4-44A6-A972-C3ED99084DE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA126645-63F4-44A6-A972-C3ED99084DE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AA126645-63F4-44A6-A972-C3ED99084DE3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF92DDF9-C463-46D7-92E6-151B577A178C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF92DDF9-C463-46D7-92E6-151B577A178C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF92DDF9-C463-46D7-92E6-151B577A178C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF92DDF9-C463-46D7-92E6-151B577A178C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5119883-871D-46F7-9D16-E31A4D954B08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5119883-871D-46F7-9D16-E31A4D954B08}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5119883-871D-46F7-9D16-E31A4D954B08}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5119883-871D-46F7-9D16-E31A4D954B08}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

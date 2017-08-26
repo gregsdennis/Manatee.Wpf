@@ -1,8 +1,10 @@
 ﻿using System.Windows;
 using Manatee.Wpf.Forms.ViewModel;
 using Manatee.Wpf.Forms.ViewModel.Validation;
+using Manatee.Wpf.MessageBox;
+using Manatee.Wpf.MessageBox.ViewModel;
 
-namespace Manatee.Forms.Tests.Client
+namespace Manatee.Wpf.Tests.Client
 {
 	/// <summary>
 	/// Interaction logic for MainWindow.xaml
@@ -79,6 +81,20 @@ namespace Manatee.Forms.Tests.Client
 			DataSource.CancelRequested += (sender, args) => Close();
 
 			InitializeComponent();
+		}
+
+		private void _ShowMessage(object sender, RoutedEventArgs e)
+		{
+			var vm = MessageBoxViewModel.FromParams(MessageBoxParams.Ok("A Message", Message.Text, MessageBoxIcon.Info));
+
+			var view = new MessageBoxView
+				{
+					DataContext = vm,
+					WindowStartupLocation = WindowStartupLocation.CenterOwner,
+					Owner = this
+				};
+
+			view.ShowDialog();
 		}
 	}
 }

@@ -4,18 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{AA126645-63F4-44A6-A972-C3ED99084DE3}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
-    <RootNamespace>Manatee.Forms.Tests.Client</RootNamespace>
-    <AssemblyName>Manatee.Forms.Tests.Client</AssemblyName>
+    <ProjectGuid>{B5119883-871D-46F7-9D16-E31A4D954B08}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <RootNamespace>Manatee.Wpf.MessageBox</RootNamespace>
+    <AssemblyName>Manatee.Wpf.MessageBox</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -25,7 +23,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -34,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FontAwesome.WPF, Version=4.7.0.37774, Culture=neutral, PublicKeyToken=0758b07a11a4f466, processorArchitecture=MSIL">
+      <HintPath>..\packages\FontAwesome.WPF.4.7.0.9\lib\net40\FontAwesome.WPF.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -50,24 +50,12 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="App.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </ApplicationDefinition>
-    <Page Include="MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Compile Include="App.xaml.cs">
-      <DependentUpon>App.xaml</DependentUpon>
-      <SubType>Code</SubType>
+    <Compile Include="IconHelper.cs" />
+    <Compile Include="MessageBoxContent.cs" />
+    <Compile Include="MessageBoxView.xaml.cs">
+      <DependentUpon>MessageBoxView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
+    <Compile Include="PlatformProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -85,22 +73,26 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <Page Include="MessageBoxView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Manatee.Wpf.Forms.ViewModel\Manatee.Wpf.Forms.ViewModel.csproj">
-      <Project>{3142e4c0-13e3-4431-a988-4bbac7b26c66}</Project>
-      <Name>Manatee.Wpf.Forms.ViewModel</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Manatee.Wpf.Forms\Manatee.Wpf.Forms.csproj">
-      <Project>{c86f2c13-41a4-49c2-8898-a978db6361cf}</Project>
-      <Name>Manatee.Wpf.Forms</Name>
+    <ProjectReference Include="..\Manatee.Wpf.MessageBox.ViewModel\Manatee.Wpf.MessageBox.ViewModel.csproj">
+      <Project>{af92ddf9-c463-46d7-92e6-151b577a178c}</Project>
+      <Name>Manatee.Wpf.MessageBox.ViewModel</Name>
     </ProjectReference>
     <ProjectReference Include="..\Manatee.Wpf\Manatee.Wpf.csproj">
       <Project>{9c008856-f374-43b1-b767-a2bc2598359d}</Project>

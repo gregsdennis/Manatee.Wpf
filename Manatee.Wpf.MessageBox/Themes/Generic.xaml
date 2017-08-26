@@ -1,0 +1,123 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+					xmlns:fa="http://schemas.fontawesome.io/icons/"
+					xmlns:cvtr="clr-namespace:Manatee.Wpf.Converters;assembly=Manatee.Wpf"
+					xmlns:vm="clr-namespace:Manatee.Wpf.MessageBox.ViewModel;assembly=Manatee.Wpf.MessageBox.ViewModel"
+					xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+					xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+					xmlns:msg="clr-namespace:Manatee.Wpf.MessageBox"
+					mc:Ignorable="d">
+	<Style TargetType="{x:Type msg:MessageBoxContent}">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type msg:MessageBoxContent}">
+					<ControlTemplate.Resources>
+						<ControlTemplate x:Key="MessageBoxInfoIconTemplate" TargetType="{x:Type ContentControl}">
+							<fa:ImageAwesome Icon="InfoCircle" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#FF4959F9" />
+						</ControlTemplate>
+						<ControlTemplate x:Key="MessageBoxWarningIconTemplate" TargetType="{x:Type ContentControl}">
+							<fa:ImageAwesome Icon="Warning" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#FFE0C621" />
+						</ControlTemplate>
+						<ControlTemplate x:Key="MessageBoxErrorIconTemplate" TargetType="{x:Type ContentControl}">
+							<fa:ImageAwesome Icon="Warning" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#FFEC421C" />
+						</ControlTemplate>
+						<Style x:Key="MessageBoxIconContentStyle" TargetType="{x:Type ContentControl}">
+							<Setter Property="Effect">
+								<Setter.Value>
+									<DropShadowEffect Direction="270" BlurRadius="1.5" Opacity="0.6" Color="Black" ShadowDepth="0"/>
+								</Setter.Value>
+							</Setter>
+							<Setter Property="Height" Value="{Binding IconSize, RelativeSource={RelativeSource TemplatedParent}}"/>
+							<Setter Property="Width" Value="{Binding IconSize, RelativeSource={RelativeSource TemplatedParent}}"/>
+							<Setter Property="Margin" Value="20"/>
+							<Setter Property="VerticalAlignment" Value="Center"/>
+							<Setter Property="Visibility" Value="Visible"/>
+							<Setter Property="Template" Value="{x:Null}"/>
+							<Style.Triggers>
+								<DataTrigger Binding="{Binding Icon}" Value="None">
+									<Setter Property="Visibility" Value="Collapsed"/>
+								</DataTrigger>
+								<DataTrigger Binding="{Binding Icon}" Value="Info">
+									<Setter Property="Template" Value="{StaticResource MessageBoxInfoIconTemplate}"/>
+								</DataTrigger>
+								<DataTrigger Binding="{Binding Icon}" Value="Warning">
+									<Setter Property="Template" Value="{StaticResource MessageBoxWarningIconTemplate}"/>
+								</DataTrigger>
+								<DataTrigger Binding="{Binding Icon}" Value="Error">
+									<Setter Property="Template" Value="{StaticResource MessageBoxErrorIconTemplate}"/>
+								</DataTrigger>
+							</Style.Triggers>
+						</Style>
+						<Style x:Key="MessageBoxButtonTextStyle" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
+							<Setter Property="FontSize" Value="{Binding ButtonFontSize, RelativeSource={RelativeSource TemplatedParent}}"/>
+						</Style>
+						<Style x:Key="MessageBoxButtonStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
+							<Setter Property="Margin" Value="5"/>
+							<Setter Property="Padding" Value="10,5"/>
+							<Setter Property="MinWidth" Value="100"/>
+							<Setter Property="FontSize" Value="{Binding ButtonFontSize, RelativeSource={RelativeSource TemplatedParent}}"/>
+						</Style>
+						<Style x:Key="MessageBoxMessageStyle" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
+							<Setter Property="VerticalAlignment" Value="Center"/>
+							<Setter Property="HorizontalAlignment" Value="Left"/>
+							<Setter Property="Margin" Value="10,10,30,10"/>
+							<Setter Property="MaxWidth" Value="400"/>
+							<Setter Property="TextWrapping" Value="Wrap"/>
+							<Setter Property="FontSize" Value="{Binding MessageFontSize, RelativeSource={RelativeSource TemplatedParent}}"/>
+							<Style.Triggers>
+								<DataTrigger Binding="{Binding Icon}" Value="None">
+									<Setter Property="Margin" Value="30,10"/>
+								</DataTrigger>
+							</Style.Triggers>
+						</Style>
+						<Style x:Key="MessageBoxButtonPanelStyle" TargetType="{x:Type StackPanel}">
+							<Setter Property="HorizontalAlignment" Value="Right"/>
+							<Setter Property="Margin" Value="5"/>
+							<Setter Property="Orientation" Value="Horizontal"/>
+							<Style.Triggers>
+								<MultiDataTrigger>
+									<MultiDataTrigger.Conditions>
+										<Condition Binding="{Binding ShowDecline}" Value="False"/>
+										<Condition Binding="{Binding ShowCancel}" Value="False"/>
+									</MultiDataTrigger.Conditions>
+									<Setter Property="HorizontalAlignment" Value="Center"/>
+								</MultiDataTrigger>
+							</Style.Triggers>
+						</Style>
+					</ControlTemplate.Resources>
+					<Grid d:DataContext="{d:DesignInstance {x:Type vm:MessageBoxViewModel}}">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="Auto"/>
+							<ColumnDefinition/>
+						</Grid.ColumnDefinitions>
+						<Grid.RowDefinitions>
+							<RowDefinition/>
+							<RowDefinition Height="Auto"/>
+						</Grid.RowDefinitions>
+						<ContentControl Style="{StaticResource MessageBoxIconContentStyle}" Content="{Binding Icon}"/>
+						<TextBlock Grid.Column="1" Style="{StaticResource MessageBoxMessageStyle}" Text="{Binding Message}"/>
+						<StackPanel Grid.ColumnSpan="2" Grid.Row="1" Style="{StaticResource MessageBoxButtonPanelStyle}">
+							<Button x:Name="ConfirmButton" Command="{Binding Confirm}" Content="{Binding ConfirmText}" Style="{StaticResource MessageBoxButtonStyle}"
+									Visibility="{Binding ShowConfirm, Converter={x:Static cvtr:BoolToVisibilityConverter.FalseToCollapsed}}"/>
+							<Button x:Name="DeclineButton" Command="{Binding Decline}" Content="{Binding DeclineText}" Style="{StaticResource MessageBoxButtonStyle}"
+									Visibility="{Binding ShowDecline, Converter={x:Static cvtr:BoolToVisibilityConverter.FalseToCollapsed}}"/>
+							<Button x:Name="CancelButton" Command="{Binding Cancel}" Content="{Binding CancelText}" Style="{StaticResource MessageBoxButtonStyle}"
+									Visibility="{Binding ShowCancel, Converter={x:Static cvtr:BoolToVisibilityConverter.FalseToCollapsed}}"/>
+						</StackPanel>
+					</Grid>
+					<ControlTemplate.Triggers>
+						<DataTrigger Binding="{Binding DefaultAction}" Value="{x:Static vm:MessageBoxAction.Confirm}">
+							<Setter TargetName="ConfirmButton" Property="IsDefault" Value="True"/>
+						</DataTrigger>
+						<DataTrigger Binding="{Binding DefaultAction}" Value="{x:Static vm:MessageBoxAction.Decline}">
+							<Setter TargetName="DeclineButton" Property="IsDefault" Value="True"/>
+						</DataTrigger>
+						<DataTrigger Binding="{Binding DefaultAction}" Value="{x:Static vm:MessageBoxAction.Cancel}">
+							<Setter TargetName="CancelButton" Property="IsDefault" Value="True"/>
+						</DataTrigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+</ResourceDictionary>
