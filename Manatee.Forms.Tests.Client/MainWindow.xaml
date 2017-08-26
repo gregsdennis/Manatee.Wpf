@@ -1,0 +1,10 @@
+﻿<Window x:Class="Manatee.Forms.Tests.Client.MainWindow"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:f="clr-namespace:Manatee.Wpf.Forms;assembly=Manatee.Wpf.Forms"
+		mc:Ignorable="d" x:Name="Root" Background="WhiteSmoke"
+		Title="MainWindow" Height="350" Width="525">
+	<f:Form Columns="3" FormDataSource="{Binding DataSource, ElementName=Root}"/>
+</Window>

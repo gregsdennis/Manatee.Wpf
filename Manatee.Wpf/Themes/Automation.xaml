@@ -1,0 +1,23 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+					xmlns:local="clr-namespace:Manatee.Wpf">
+	<Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource {x:Type TextBox}}">
+		<Setter Property="local:Automation.Auto" Value="True"/>
+	</Style>
+	
+	<Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource {x:Type ToggleButton}}">
+		<Setter Property="local:Automation.Auto" Value="True"/>
+	</Style>
+	
+	<Style TargetType="{x:Type CheckBox}" BasedOn="{StaticResource {x:Type CheckBox}}">
+		<Setter Property="local:Automation.Auto" Value="True"/>
+	</Style>
+	
+	<Style TargetType="{x:Type ItemsControl}" BasedOn="{StaticResource {x:Type ItemsControl}}">
+		<Setter Property="local:Automation.Auto" Value="True"/>
+	</Style>
+	
+	<Style TargetType="{x:Type ListBox}" BasedOn="{StaticResource {x:Type ListBox}}">
+		<Setter Property="local:Automation.Auto" Value="True"/>
+	</Style>
+</ResourceDictionary>

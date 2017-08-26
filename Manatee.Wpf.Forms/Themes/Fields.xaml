@@ -1,0 +1,87 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+					xmlns:vm="clr-namespace:Manatee.Wpf.Forms.ViewModel;assembly=Manatee.Wpf.Forms.ViewModel"
+					xmlns:ctrl="clr-namespace:Manatee.Wpf;assembly=Manatee.Wpf"
+					xmlns:cvtr="clr-namespace:Manatee.Wpf.Forms.Converters">
+	<Style x:Key="ErrorMessageListStyle" TargetType="{x:Type ItemsControl}">
+		<Setter Property="Focusable" Value="False"/>
+		<Setter Property="ItemTemplate">
+			<Setter.Value>
+				<DataTemplate>
+					<TextBlock Text="{Binding}" Foreground="Red" TextWrapping="Wrap"/>
+				</DataTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	
+	<DataTemplate DataType="{x:Type vm:NumericField}">
+		<StackPanel>
+			<TextBlock Text="{Binding Label}" Margin="0,0,0,3"/>
+			<ctrl:NumericTextBox x:Name="TheBox" Format="{Binding StringFormat}"
+			                     NumericValue="{Binding Value, UpdateSourceTrigger=PropertyChanged}"
+			                     HorizontalContentAlignment="Right"/>
+			<ItemsControl ItemsSource="{Binding ErrorMessages}" Style="{DynamicResource ErrorMessageListStyle}"/>
+		</StackPanel>
+		<DataTemplate.Triggers>
+			<DataTrigger Binding="{Binding HasError}" Value="True">
+				<Setter TargetName="TheBox" Property="BorderBrush" Value="Red"/>
+			</DataTrigger>
+		</DataTemplate.Triggers>
+	</DataTemplate>
+	
+	<DataTemplate DataType="{x:Type vm:StringField}">
+		<StackPanel>
+			<TextBlock Text="{Binding Label}" Margin="0,0,0,3"/>
+			<TextBox x:Name="TheBox" Text="{Binding Value, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap"/>
+			<ItemsControl ItemsSource="{Binding ErrorMessages}" Style="{DynamicResource ErrorMessageListStyle}"/>
+		</StackPanel>
+		<DataTemplate.Triggers>
+			<DataTrigger Binding="{Binding HasError}" Value="True">
+				<Setter TargetName="TheBox" Property="BorderBrush" Value="Red"/>
+			</DataTrigger>
+		</DataTemplate.Triggers>
+	</DataTemplate>
+	
+	<!-- Data type is SelectorField<T> but we can't do generics in XAML... -->
+	<DataTemplate x:Key="SelectorTemplate">
+		<StackPanel>
+			<TextBlock Text="{Binding Label}" Margin="0,0,0,3"/>
+			<ComboBox x:Name="TheBox" ItemsSource="{Binding Options}"
+					  SelectedItem="{Binding Value, UpdateSourceTrigger=PropertyChanged}"/>
+			<ItemsControl ItemsSource="{Binding ErrorMessages}" Style="{DynamicResource ErrorMessageListStyle}"/>
+		</StackPanel>
+		<DataTemplate.Triggers>
+			<DataTrigger Binding="{Binding HasError}" Value="True">
+				<Setter TargetName="TheBox" Property="BorderBrush" Value="Red"/>
+			</DataTrigger>
+		</DataTemplate.Triggers>
+	</DataTemplate>
+	
+	<DataTemplate DataType="{x:Type vm:DateField}">
+		<StackPanel>
+			<TextBlock Text="{Binding Label}" Margin="0,0,0,3"/>
+			<DatePicker x:Name="TheBox" SelectedDate="{Binding Value, UpdateSourceTrigger=PropertyChanged}"
+						SelectedDateFormat="Short"/>
+			<ItemsControl ItemsSource="{Binding ErrorMessages}" Style="{DynamicResource ErrorMessageListStyle}"/>
+		</StackPanel>
+		<DataTemplate.Triggers>
+			<DataTrigger Binding="{Binding HasError}" Value="True">
+				<Setter TargetName="TheBox" Property="BorderBrush" Value="Red"/>
+			</DataTrigger>
+		</DataTemplate.Triggers>
+	</DataTemplate>
+	
+	<DataTemplate DataType="{x:Type vm:ToggleField}">
+		<StackPanel>
+			<CheckBox x:Name="TheBox" Content="{Binding Label}"
+					  IsThreeState="{Binding ValidationRules, Converter={x:Static cvtr:RequiredValue.No}}"
+					  IsChecked="{Binding Value, UpdateSourceTrigger=PropertyChanged}"/>
+			<ItemsControl ItemsSource="{Binding ErrorMessages}" Style="{DynamicResource ErrorMessageListStyle}"/>
+		</StackPanel>
+		<DataTemplate.Triggers>
+			<DataTrigger Binding="{Binding HasError}" Value="True">
+				<Setter TargetName="TheBox" Property="BorderBrush" Value="Red"/>
+			</DataTrigger>
+		</DataTemplate.Triggers>
+	</DataTemplate>
+</ResourceDictionary>

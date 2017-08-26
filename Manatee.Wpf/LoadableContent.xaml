@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="Manatee.Wpf.LoadableContent"
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:local="clr-namespace:Manatee.Wpf"
+			 xmlns:cvtr="clr-namespace:Manatee.Wpf.Converters"
+			 mc:Ignorable="d" 
+			 d:DesignHeight="300" d:DesignWidth="300"
+			 x:Name="LoadableContentRoot">
+	<Grid>
+		<ContentControl Content="{Binding CustomContent, ElementName=LoadableContentRoot}">
+			<ContentControl.Visibility>
+				<MultiBinding Converter="{cvtr:Aggregator {x:Static cvtr:BooleanLogic.Or}, {x:Static cvtr:BoolToVisibilityConverter.TrueToCollapsed}}">
+					<Binding Path="ShowBusy" ElementName="LoadableContentRoot"/>
+					<Binding Path="ShowError" ElementName="LoadableContentRoot"/>
+				</MultiBinding>
+			</ContentControl.Visibility>
+		</ContentControl>
+		<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center"
+					Visibility="{Binding ShowBusy, ElementName=LoadableContentRoot, Converter={x:Static cvtr:BoolToVisibilityConverter.FalseToCollapsed}}">
+			<local:BusySpinner HorizontalAlignment="Center"/>
+			<TextBlock Text="{Binding BusyMessage, ElementName=LoadableContentRoot}" HorizontalAlignment="Center" Margin="10" FontWeight="Bold"/>
+		</StackPanel>
+		<local:ErrorBanner ErrorMessage="{Binding ErrorMessage, ElementName=LoadableContentRoot}" HorizontalAlignment="Center" VerticalAlignment="Center"
+						   Visibility="{Binding ShowError, ElementName=LoadableContentRoot, Converter={x:Static cvtr:BoolToVisibilityConverter.FalseToCollapsed}}"
+						   ButtonCommand="{Binding ErrorButtonCommand, ElementName=LoadableContentRoot}"
+						   ButtonContent="{Binding ErrorButtonContent, ElementName=LoadableContentRoot}"
+						   ShowButton="{Binding ShowErrorButton, ElementName=LoadableContentRoot}" Margin="20"/>
+	</Grid>
+</UserControl>

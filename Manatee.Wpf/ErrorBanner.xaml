@@ -1,0 +1,20 @@
+﻿<UserControl x:Class="Manatee.Wpf.ErrorBanner"
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+			 xmlns:fa="http://schemas.fontawesome.io/icons/"
+			 xmlns:cvtr="clr-namespace:Manatee.Wpf.Converters"
+			 mc:Ignorable="d" 
+			 d:DesignHeight="300" d:DesignWidth="300"
+			 x:Name="ErrorBannerRoot">
+	<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+		<fa:FontAwesome Icon="ExclamationTriangle" FontSize="36"
+						Foreground="{Binding IconBrush, ElementName=ErrorBannerRoot}"/>
+		<TextBlock Text="{Binding ErrorMessage, ElementName=ErrorBannerRoot}" HorizontalAlignment="Center" Margin="10" FontWeight="Bold"
+				   TextWrapping="Wrap" TextAlignment="Center"/>
+		<Button Content="{Binding ButtonContent, ElementName=ErrorBannerRoot}"
+				Command="{Binding ButtonCommand, ElementName=ErrorBannerRoot}" HorizontalAlignment="Center" Margin="10"
+				Visibility="{Binding ShowButton, ElementName=ErrorBannerRoot, Converter={x:Static cvtr:BoolToVisibilityConverter.FalseToCollapsed}}"/>
+	</StackPanel>
+</UserControl>
