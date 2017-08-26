@@ -5,18 +5,20 @@ using System.Windows.Data;
 
 namespace Manatee.Wpf.Converters
 {
-	public class ValueToResourceConverter : IValueConverter
+	public class ValueToResource : IValueConverter
 	{
-		public static ValueToResourceConverter Instance { get; }
+		public static ValueToResource Instance { get; }
 
-		static ValueToResourceConverter()
+		static ValueToResource()
 		{
-			Instance = new ValueToResourceConverter();
+			Instance = new ValueToResource();
 		}
-		private ValueToResourceConverter() {}
+		private ValueToResource() {}
 
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
+			if (value == null) return null;
+
 			return Application.Current.FindResource(value);
 		}
 		public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

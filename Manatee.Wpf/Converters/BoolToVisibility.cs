@@ -6,14 +6,14 @@ using System.Windows.Data;
 namespace Manatee.Wpf.Converters
 {
 	/// <summary>
-	/// Converts nullness to and from <see cref="Visibility"/>.
+	/// Converts boolean values to and from <see cref="Visibility"/>.
 	/// </summary>
-	public class NullToVisibilityConverter : IValueConverter
+	public class BoolToVisibility : IValueConverter
 	{
-		private static NullToVisibilityConverter _notNullToCollapsed;
-		private static NullToVisibilityConverter _notNullToHidden;
-		private static NullToVisibilityConverter _nullToCollapsed;
-		private static NullToVisibilityConverter _nullToHidden;
+		private static BoolToVisibility _trueToCollapsed;
+		private static BoolToVisibility _trueToHidden;
+		private static BoolToVisibility _falseToCollapsed;
+		private static BoolToVisibility _falseToHidden;
 
 		private readonly bool _isInverted;
 		private readonly Visibility _nonVisibleState;
@@ -22,28 +22,28 @@ namespace Manatee.Wpf.Converters
 		/// Converts true to <see cref="Visibility.Collapsed"/> and
 		/// false to <see cref="Visibility.Visible"/>.
 		/// </summary>
-		public static NullToVisibilityConverter NotNullToCollapsed =>
-			_notNullToCollapsed ?? (_notNullToCollapsed = new NullToVisibilityConverter(true, Visibility.Collapsed));
+		public static BoolToVisibility TrueToCollapsed =>
+			_trueToCollapsed ?? (_trueToCollapsed = new BoolToVisibility(true, Visibility.Collapsed));
 		/// <summary>
 		/// Converts true to <see cref="Visibility.Hidden"/> and
 		/// false to <see cref="Visibility.Visible"/>.
 		/// </summary>
-		public static NullToVisibilityConverter NotNullToHidden =>
-			_notNullToHidden ?? (_notNullToHidden = new NullToVisibilityConverter(true, Visibility.Hidden));
+		public static BoolToVisibility TrueToHidden =>
+			_trueToHidden ?? (_trueToHidden = new BoolToVisibility(true, Visibility.Hidden));
 		/// <summary>
 		/// Converts true to <see cref="Visibility.Visible"/> and
 		/// false to <see cref="Visibility.Collapsed"/>.
 		/// </summary>
-		public static NullToVisibilityConverter NullToCollapsed =>
-			_nullToCollapsed ?? (_nullToCollapsed = new NullToVisibilityConverter(false, Visibility.Collapsed));
+		public static BoolToVisibility FalseToCollapsed =>
+			_falseToCollapsed ?? (_falseToCollapsed = new BoolToVisibility(false, Visibility.Collapsed));
 		/// <summary>
 		/// Converts true to <see cref="Visibility.Visible"/> and
 		/// false to <see cref="Visibility.Hidden"/>.
 		/// </summary>
-		public static NullToVisibilityConverter NullToHidden =>
-			_nullToHidden ?? (_nullToHidden = new NullToVisibilityConverter(false, Visibility.Hidden));
+		public static BoolToVisibility FalseToHidden =>
+			_falseToHidden ?? (_falseToHidden = new BoolToVisibility(false, Visibility.Hidden));
 
-		private NullToVisibilityConverter(bool isInverted, Visibility nonVisibleState)
+		private BoolToVisibility(bool isInverted, Visibility nonVisibleState)
 		{
 			_isInverted = isInverted;
 			_nonVisibleState = nonVisibleState;
@@ -57,7 +57,9 @@ namespace Manatee.Wpf.Converters
 		/// <param name="culture">The culture to use in the converter.</param>
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
-			return LogicInverter.InvertIfNecessary(value != null, _isInverted, Visibility.Visible, _nonVisibleState);
+			if (!(value is bool)) return value;
+
+			return LogicInverter.InvertIfNecessary((bool) value, _isInverted, Visibility.Visible, _nonVisibleState);
 		}
 		/// <summary>Converts a value. </summary>
 		/// <returns>A converted value. If the method returns null, the valid null value is used.</returns>

@@ -9,21 +9,21 @@ namespace Manatee.Wpf.Converters
 	/// <summary>
 	/// Converts enumeration values into display-ready strings.
 	/// </summary>
-	public class EnumToUiStringConverter : IValueConverter
+	public class EnumToUiString : IValueConverter
 	{
-		private static readonly Dictionary<Type, Dictionary<object, string>> Registry = 
+		private static readonly Dictionary<Type, Dictionary<object, string>> _registry = 
 			new Dictionary<Type, Dictionary<object, string>>();
 
 		/// <summary>
 		/// Gets the default instance.
 		/// </summary>
-		public static EnumToUiStringConverter Instance { get; }
+		public static EnumToUiString Instance { get; }
 
-		static EnumToUiStringConverter()
+		static EnumToUiString()
 		{
-			Instance = new EnumToUiStringConverter();
+			Instance = new EnumToUiString();
 		}
-		private EnumToUiStringConverter() { }
+		private EnumToUiString() { }
 
 		/// <summary>
 		/// Registers an enumeration type mapping.  All mappings should be registered 
@@ -36,7 +36,7 @@ namespace Manatee.Wpf.Converters
 		{
 			if (!typeof(Enum).IsAssignableFrom(typeof(T))) throw new ArgumentException("Only enumeration types can be registered.");
 
-			Registry[typeof(T)] = map.ToDictionary(kvp => (object) kvp.Key, kvp => kvp.Value);
+			_registry[typeof(T)] = map.ToDictionary(kvp => (object) kvp.Key, kvp => kvp.Value);
 		}
 
 		/// <summary>Converts a value. </summary>
@@ -47,11 +47,11 @@ namespace Manatee.Wpf.Converters
 		/// <param name="culture">The culture to use in the converter.</param>
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
-			Dictionary<object, string> map;
-			if (Registry.TryGetValue(value.GetType(), out map))
+			if (value == null) return null;
+
+			if (_registry.TryGetValue(value.GetType(), out Dictionary<object, string> map))
 			{
-				string mappedValue;
-				if (map.TryGetValue(value, out mappedValue)) return mappedValue;
+				if (map.TryGetValue(value, out string mappedValue)) return mappedValue;
 			}
 			return value.ToString();
 		}
@@ -63,9 +63,9 @@ namespace Manatee.Wpf.Converters
 		/// <param name="culture">The culture to use in the converter.</param>
 		public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
 		{
-			Dictionary<object, string> map;
-			var text = value as string;
-			if (text != null && Registry.TryGetValue(targetType, out map))
+			if (value == null) return null;
+
+			if (value is string text && _registry.TryGetValue(targetType, out Dictionary<object, string> map))
 			{
 				// must do this check b/c KeyValuePair<> is a struct.
 				if (map.Any(kvp => kvp.Value == text))

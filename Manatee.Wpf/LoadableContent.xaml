@@ -11,19 +11,19 @@
 	<Grid>
 		<ContentControl Content="{Binding CustomContent, ElementName=LoadableContentRoot}">
 			<ContentControl.Visibility>
-				<MultiBinding Converter="{cvtr:Aggregator {x:Static cvtr:BooleanLogic.Or}, {x:Static cvtr:BoolToVisibilityConverter.TrueToCollapsed}}">
+				<MultiBinding Converter="{cvtr:Aggregator {x:Static cvtr:BooleanLogic.Or}, {x:Static cvtr:BoolToVisibility.TrueToCollapsed}}">
 					<Binding Path="ShowBusy" ElementName="LoadableContentRoot"/>
 					<Binding Path="ShowError" ElementName="LoadableContentRoot"/>
 				</MultiBinding>
 			</ContentControl.Visibility>
 		</ContentControl>
 		<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center"
-					Visibility="{Binding ShowBusy, ElementName=LoadableContentRoot, Converter={x:Static cvtr:BoolToVisibilityConverter.FalseToCollapsed}}">
+					Visibility="{Binding ShowBusy, ElementName=LoadableContentRoot, Converter={x:Static cvtr:BoolToVisibility.FalseToCollapsed}}">
 			<local:BusySpinner HorizontalAlignment="Center"/>
 			<TextBlock Text="{Binding BusyMessage, ElementName=LoadableContentRoot}" HorizontalAlignment="Center" Margin="10" FontWeight="Bold"/>
 		</StackPanel>
 		<local:ErrorBanner ErrorMessage="{Binding ErrorMessage, ElementName=LoadableContentRoot}" HorizontalAlignment="Center" VerticalAlignment="Center"
-						   Visibility="{Binding ShowError, ElementName=LoadableContentRoot, Converter={x:Static cvtr:BoolToVisibilityConverter.FalseToCollapsed}}"
+						   Visibility="{Binding ShowError, ElementName=LoadableContentRoot, Converter={x:Static cvtr:BoolToVisibility.FalseToCollapsed}}"
 						   ButtonCommand="{Binding ErrorButtonCommand, ElementName=LoadableContentRoot}"
 						   ButtonContent="{Binding ErrorButtonContent, ElementName=LoadableContentRoot}"
 						   ShowButton="{Binding ShowErrorButton, ElementName=LoadableContentRoot}" Margin="20"/>

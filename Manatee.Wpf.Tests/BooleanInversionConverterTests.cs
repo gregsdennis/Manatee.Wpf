@@ -15,7 +15,7 @@ namespace Manatee.Wpf.Tests
 		[TestCase(true, false)]
 		public void ConvertInverts(bool expected, object value)
 		{
-			var actual = BooleanInversionConverter.Instance.Convert(value, typeof(bool), null, CultureInfo.CurrentCulture);
+			var actual = BooleanInverter.Instance.Convert(value, typeof(bool), null, CultureInfo.CurrentCulture);
 
 			Assert.AreEqual(expected, actual);
 		}
@@ -23,7 +23,7 @@ namespace Manatee.Wpf.Tests
 		[Test]
 		public void ThrowsOnIncorrectType()
 		{
-			Assert.Throws<ArgumentException>(() => BooleanInversionConverter.Instance.Convert(1, typeof(bool), null, CultureInfo.CurrentCulture));
+			Assert.Throws<ArgumentException>(() => BooleanInverter.Instance.Convert(1, typeof(bool), null, CultureInfo.CurrentCulture));
 		}
 	}
 }

@@ -3,24 +3,11 @@
 		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-		xmlns:f="clr-namespace:Manatee.Wpf.Forms;assembly=Manatee.Wpf.Forms"
 		mc:Ignorable="d" x:Name="Root" Background="WhiteSmoke"
-		Title="MainWindow" Height="350" Width="525">
-	<Grid>
-		<Grid.RowDefinitions>
-			<RowDefinition/>
-			<RowDefinition Height="Auto"/>
-		</Grid.RowDefinitions>
-		<Border BorderBrush="Gray" BorderThickness="1" Margin="5">
-			<f:Form Columns="3" FormDataSource="{Binding DataSource, ElementName=Root}"/>
-		</Border>
-		<Grid Grid.Row="1" Margin="5">
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition/>
-				<ColumnDefinition Width="Auto"/>
-			</Grid.ColumnDefinitions>
-			<TextBox x:Name="Message" Margin="5"/>
-			<Button Grid.Column="1" Content="Show Message" Click="_ShowMessage" Margin="5"/>
-		</Grid>
-	</Grid>
+		Title="MainWindow" Height="350" Width="525" SizeToContent="Height" ResizeMode="CanMinimize">
+	<TabControl Margin="7">
+		<TabItem Header="Forms" ContentTemplate="{StaticResource Forms}"/>
+		<TabItem Header="Message Boxes" ContentTemplate="{StaticResource MessageBox}"/>
+		<TabItem Header="Converters" ContentTemplate="{StaticResource Converters}"/>
+	</TabControl>
 </Window>

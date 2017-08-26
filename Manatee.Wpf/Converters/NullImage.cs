@@ -8,15 +8,15 @@ namespace Manatee.Wpf.Converters
 	/// <summary>
 	/// Protects against image source binding errors when the source is null.
 	/// </summary>
-	public class NullImageConverter : IValueConverter
+	public class NullImage : IValueConverter
 	{
-		public static NullImageConverter Instance { get; }
+		public static NullImage Instance { get; }
 
-		static NullImageConverter()
+		static NullImage()
 		{
-			Instance = new NullImageConverter();
+			Instance = new NullImage();
 		}
-		private NullImageConverter() {}
+		private NullImage() {}
 
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{

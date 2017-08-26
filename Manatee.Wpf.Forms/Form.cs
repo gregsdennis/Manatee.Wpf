@@ -27,7 +27,7 @@ namespace Manatee.Wpf.Forms
 
 		static Form()
 		{
-			ViewModel.PlatformProvider.Current = PlatformProvider.Instance;
+			PlatformProvider.Initialize();
 
 			DefaultStyleKeyProperty.OverrideMetadata(typeof(Form), new FrameworkPropertyMetadata(typeof(Form)));
 		}

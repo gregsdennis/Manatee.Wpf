@@ -17,8 +17,8 @@ namespace Manatee.Wpf.MessageBox.ViewModel
 		private MessageBoxIcon _icon;
 		private string _message;
 		private string _title;
-		private bool _explicitCancel;
 		private MessageBoxAction? _defaultAction;
+		private bool _allowNonResponse;
 
 		/// <summary>
 		/// Gets or sets the text which appears in the title bar.
@@ -161,16 +161,25 @@ namespace Manatee.Wpf.MessageBox.ViewModel
 		}
 
 		/// <summary>
+		/// Gets or sets whether the user is allowed to close the window using the
+		/// red X button in the upper right corner of the window.
+		/// </summary>
+		public bool AllowNonResponse
+		{
+			get { return _allowNonResponse; }
+			set
+			{
+				if (value == _allowNonResponse) return;
+				_allowNonResponse = value;
+				NotifyOfPropertyChange();
+			}
+		}
+
+		/// <summary>
 		/// Gets the user-provided response.
 		/// </summary>
 		public MessageBoxAction Result { get; private set; }
 
-		/// <summary>
-		/// Gets or sets whether the user is allowed to close the window using the
-		/// red X button in the upper right corner of the window.
-		/// </summary>
-		public bool AllowNonResponse { get; set; }
-		
 		/// <summary>
 		/// Implements the confirm button action.
 		/// </summary>
@@ -208,7 +217,6 @@ namespace Manatee.Wpf.MessageBox.ViewModel
 				                           });
 			Cancel = new RelayCommand(() =>
 				                          {
-					                          _explicitCancel = true;
 					                          Result = MessageBoxAction.Cancel;
 					                          TryClose();
 				                          });
@@ -233,7 +241,7 @@ namespace Manatee.Wpf.MessageBox.ViewModel
 
 		public bool CanClose()
 		{
-			return Result != MessageBoxAction.Cancel || AllowNonResponse || _explicitCancel;
+			return Result != MessageBoxAction.None || AllowNonResponse;
 		}
 
 		public void TryClose()

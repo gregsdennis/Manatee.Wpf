@@ -1,0 +1,53 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+					xmlns:vm="clr-namespace:Manatee.Wpf.MessageBox.ViewModel;assembly=Manatee.Wpf.MessageBox.ViewModel"
+					xmlns:cvtr="clr-namespace:Manatee.Wpf.Converters;assembly=Manatee.Wpf">
+	<DataTemplate x:Key="MessageBox">
+		<StackPanel>
+			<Label Target="{Binding ElementName=Title}" Content="Title"/>
+			<TextBox x:Name="Title" Text="{Binding MessageBoxData.Title, ElementName=Root, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,5,5"/>
+			<Label Target="{Binding ElementName=Message}" Content="Message"/>
+			<TextBox x:Name="Message" Text="{Binding MessageBoxData.Message, ElementName=Root, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,5,5"/>
+			<Label Target="{Binding ElementName=ConfirmText}" Content="Confirm button text"/>
+			<Grid x:Name="ConfirmText" Margin="5,0,5,5">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition/>
+				</Grid.ColumnDefinitions>
+				<CheckBox x:Name="ShowConfirm" IsChecked="{Binding MessageBoxData.ShowConfirm, ElementName=Root}"/>
+				<TextBox Grid.Column="1" Text="{Binding MessageBoxData.ConfirmText, ElementName=Root, UpdateSourceTrigger=PropertyChanged}"
+						 IsEnabled="{Binding IsChecked, ElementName=ShowConfirm}" Margin="5,0,0,0"/>
+			</Grid>
+			<Label Target="{Binding ElementName=DeclineText}" Content="Decline button text"/>
+			<Grid x:Name="DeclineText" Margin="5,0,5,5">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition/>
+				</Grid.ColumnDefinitions>
+				<CheckBox x:Name="ShowDecline" IsChecked="{Binding MessageBoxData.ShowDecline, ElementName=Root}"/>
+				<TextBox Grid.Column="1" Text="{Binding MessageBoxData.DeclineText, ElementName=Root, UpdateSourceTrigger=PropertyChanged}"
+						 IsEnabled="{Binding IsChecked, ElementName=ShowDecline}" Margin="5,0,0,0"/>
+			</Grid>
+			<Label Target="{Binding ElementName=CancelText}" Content="Cancel button text"/>
+			<Grid x:Name="CancelText" Margin="5,0,5,5">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition/>
+				</Grid.ColumnDefinitions>
+				<CheckBox x:Name="ShowCancel" IsChecked="{Binding MessageBoxData.ShowCancel, ElementName=Root}"/>
+				<TextBox Grid.Column="1" Text="{Binding MessageBoxData.CancelText, ElementName=Root, UpdateSourceTrigger=PropertyChanged}"
+						 IsEnabled="{Binding IsChecked, ElementName=ShowCancel}" Margin="5,0,0,0"/>
+			</Grid>
+			<Label Target="{Binding ElementName=DefaultAction}" Content="Default Action"/>
+			<ComboBox x:Name="DefaultAction" ItemsSource="{Binding Source={x:Type vm:MessageBoxAction}, Converter={x:Static cvtr:EnumValues.Values}}"
+					  SelectedItem="{Binding MessageBoxData.DefaultAction, ElementName=Root}" Margin="5,0,5,5"/>
+			<Label Target="{Binding ElementName=Icon}" Content="Icon"/>
+			<ComboBox x:Name="Icon" ItemsSource="{Binding Source={x:Type vm:MessageBoxIcon}, Converter={x:Static cvtr:EnumValues.Values}}"
+					  SelectedItem="{Binding MessageBoxData.Icon, ElementName=Root}" Margin="5,0,5,5"/>
+			<CheckBox Content="Allow user to close with 'X' button" Margin="5"
+					  IsChecked="{Binding MessageBoxData.AllowNonResponse, ElementName=Root, UpdateSourceTrigger=PropertyChanged}"/>
+			<Separator Margin="0,5"/>
+			<Button Content="Show Message Box" Command="{Binding ShowMessageBox, ElementName=Root}" Margin="5" Padding="5"/>
+		</StackPanel>
+	</DataTemplate>
+</ResourceDictionary>

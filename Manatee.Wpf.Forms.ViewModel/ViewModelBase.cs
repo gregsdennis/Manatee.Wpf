@@ -56,7 +56,7 @@ namespace Manatee.Wpf.Forms.ViewModel
 		{
 			if (!IsNotifying || PropertyChanged == null) return;
 
-			PlatformProvider.Current.OnUiThread(() => _OnPropertyChanged(new PropertyChangedEventArgs(propertyName)));
+			PlatformProvider.Current?.OnUiThread(() => _OnPropertyChanged(new PropertyChangedEventArgs(propertyName)));
 		}
 
 		/// <summary>

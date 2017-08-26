@@ -76,15 +76,15 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Converters\AggregateConverter.cs" />
+    <Compile Include="Converters\Aggregator.cs" />
     <Compile Include="Automation.cs" />
-    <Compile Include="Converters\BooleanInversionConverter.cs" />
-    <Compile Include="Converters\BooleanLogicConverter.cs" />
-    <Compile Include="Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="Converters\BooleanInverter.cs" />
+    <Compile Include="Converters\BooleanLogic.cs" />
+    <Compile Include="Converters\BoolToVisibility.cs" />
     <Compile Include="BusySpinner.xaml.cs">
       <DependentUpon>BusySpinner.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Converters\EnumToUiStringConverter.cs" />
+    <Compile Include="Converters\EnumToUiString.cs" />
     <Compile Include="Converters\EnumValues.cs" />
     <Compile Include="ErrorBanner.xaml.cs">
       <DependentUpon>ErrorBanner.xaml</DependentUpon>
@@ -95,9 +95,8 @@
       <DependentUpon>LoadableContent.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\LogicInverter.cs" />
-    <Compile Include="Converters\NullImageConverter.cs" />
-    <Compile Include="Converters\NullToBooleanConverter.cs" />
-    <Compile Include="Converters\NullToVisibilityConverter.cs" />
+    <Compile Include="Converters\NullImage.cs" />
+    <Compile Include="Converters\NullToBoolean.cs" />
     <Compile Include="NumericTextBox.cs" />
     <Compile Include="ParameterizedTypeSwitch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -113,9 +112,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Converters\StringFormatConverter.cs" />
-    <Compile Include="Converters\StringToVisibilityConverter.cs" />
-    <Compile Include="Converters\ValueToResourceConverter.cs" />
+    <Compile Include="Converters\StringFormatter.cs" />
+    <Compile Include="Converters\StringNullability.cs" />
+    <Compile Include="Converters\ValueToResource.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

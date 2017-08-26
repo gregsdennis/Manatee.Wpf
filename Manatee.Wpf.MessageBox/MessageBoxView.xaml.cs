@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Windows;
 using Manatee.Wpf.MessageBox.ViewModel;
 
@@ -9,6 +10,10 @@ namespace Manatee.Wpf.MessageBox
 	/// </summary>
 	public partial class MessageBoxView : Window
 	{
+		static MessageBoxView()
+		{
+			PlatformProvider.Initialize();
+		}
 		public MessageBoxView()
 		{
 			InitializeComponent();
@@ -20,6 +25,14 @@ namespace Manatee.Wpf.MessageBox
 		{
 			IconHelper.RemoveIcon(this);
 			base.OnSourceInitialized(e);
+		}
+
+		protected override void OnClosing(CancelEventArgs e)
+		{
+			var content = DataContext as MessageBoxViewModel;
+			e.Cancel = !content?.CanClose() ?? false;
+
+			base.OnClosing(e);
 		}
 
 		private void _OnDataContextChanged(object sender, DependencyPropertyChangedEventArgs e)

@@ -15,7 +15,7 @@ namespace Manatee.Wpf.Converters
 		/// </summary>
 		public static EnumValues Values { get; }
 		/// <summary>
-		/// Returns the UI strings for each value via the <see cref="EnumToUiStringConverter"/>.
+		/// Returns the UI strings for each value via the <see cref="EnumToUiString"/>.
 		/// </summary>
 		public static EnumValues UiStrings { get; }
 
@@ -45,7 +45,7 @@ namespace Manatee.Wpf.Converters
 			var values = Enum.GetValues(enumType).Cast<object>().ToList();
 
 			return _returnUiStrings
-				       ? values.Select(v => EnumToUiStringConverter.Instance.Convert(v, targetType, parameter, culture))
+				       ? values.Select(v => EnumToUiString.Instance.Convert(v, targetType, parameter, culture))
 				       : values;
 		}
 

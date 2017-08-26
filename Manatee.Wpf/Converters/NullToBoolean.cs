@@ -5,20 +5,29 @@ using System.Windows.Data;
 namespace Manatee.Wpf.Converters
 {
 	/// <summary>
-	/// Inverts a boolean value;
+	/// Converts values to <see cref="Boolean"/>.
 	/// </summary>
-	public class BooleanInversionConverter : IValueConverter
+	public class NullToBoolean : IValueConverter
 	{
-		/// <summary>
-		/// Gets the default instance.
-		/// </summary>
-		public static BooleanInversionConverter Instance { get; }
+		private static NullToBoolean _nullToTrue;
 
-		static BooleanInversionConverter()
+		private readonly bool _isInverted;
+
+		/// <summary>
+		/// Converts null values to true.
+		/// </summary>
+		public static NullToBoolean NullToTrue =>
+			_nullToTrue ?? (_nullToTrue = new NullToBoolean(false));
+		/// <summary>
+		/// Converts null values to false.
+		/// </summary>
+		public static NullToBoolean NullToFalse =>
+			_nullToTrue ?? (_nullToTrue = new NullToBoolean(true));
+
+		private NullToBoolean(bool isInverted)
 		{
-			Instance = new BooleanInversionConverter();
+			_isInverted = isInverted;
 		}
-		private BooleanInversionConverter() {}
 
 		/// <summary>Converts a value. </summary>
 		/// <returns>A converted value. If the method returns null, the valid null value is used.</returns>
@@ -28,9 +37,7 @@ namespace Manatee.Wpf.Converters
 		/// <param name="culture">The culture to use in the converter.</param>
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
-			if (!(value is bool)) throw new ArgumentException($"value must be of type '{typeof(bool)}'");
-
-			return !(bool) value;
+			return LogicInverter.InvertIfNecessary(value == null, _isInverted, true, false);
 		}
 		/// <summary>Converts a value. </summary>
 		/// <returns>A converted value. If the method returns null, the valid null value is used.</returns>
@@ -40,9 +47,7 @@ namespace Manatee.Wpf.Converters
 		/// <param name="culture">The culture to use in the converter.</param>
 		public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
 		{
-			if (!(value is bool)) throw new ArgumentException($"value must be of type '{typeof(bool)}'");
-
-			return !(bool)value;
+			throw new NotImplementedException();
 		}
 	}
 }

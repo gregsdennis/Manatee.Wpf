@@ -1,0 +1,18 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+					xmlns:forms="clr-namespace:Manatee.Wpf.Forms;assembly=Manatee.Wpf.Forms">
+	<DataTemplate x:Key="Forms">
+		<StackPanel>
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition/>
+				</Grid.ColumnDefinitions>
+				<Label Target="{Binding ElementName=Columns}" Content="Column count"/>
+				<Slider x:Name="Columns" Grid.Column="1" Minimum="1" Maximum="5" Margin="5"/>
+			</Grid>
+			<Separator Margin="0,5"/>
+			<forms:Form Columns="{Binding Value, ElementName=Columns}" FormDataSource="{Binding DataSource, ElementName=Root}"/>
+		</StackPanel>
+	</DataTemplate>
+</ResourceDictionary>

@@ -5,29 +5,20 @@ using System.Windows.Data;
 namespace Manatee.Wpf.Converters
 {
 	/// <summary>
-	/// Converts values to <see cref="Boolean"/>.
+	/// Inverts a boolean value;
 	/// </summary>
-	public class NullToBooleanConverter : IValueConverter
+	public class BooleanInverter : IValueConverter
 	{
-		private static NullToBooleanConverter _nullToTrue;
-
-		private readonly bool _isInverted;
-
 		/// <summary>
-		/// Converts null values to true.
+		/// Gets the default instance.
 		/// </summary>
-		public static NullToBooleanConverter NullToTrue =>
-			_nullToTrue ?? (_nullToTrue = new NullToBooleanConverter(false));
-		/// <summary>
-		/// Converts null values to false.
-		/// </summary>
-		public static NullToBooleanConverter NullToFalse =>
-			_nullToTrue ?? (_nullToTrue = new NullToBooleanConverter(true));
+		public static BooleanInverter Instance { get; }
 
-		private NullToBooleanConverter(bool isInverted)
+		static BooleanInverter()
 		{
-			_isInverted = isInverted;
+			Instance = new BooleanInverter();
 		}
+		private BooleanInverter() {}
 
 		/// <summary>Converts a value. </summary>
 		/// <returns>A converted value. If the method returns null, the valid null value is used.</returns>
@@ -37,7 +28,9 @@ namespace Manatee.Wpf.Converters
 		/// <param name="culture">The culture to use in the converter.</param>
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
-			return LogicInverter.InvertIfNecessary(value == null, _isInverted, true, false);
+			if (!(value is bool)) throw new ArgumentException($"value must be of type '{typeof(bool)}'");
+
+			return !(bool) value;
 		}
 		/// <summary>Converts a value. </summary>
 		/// <returns>A converted value. If the method returns null, the valid null value is used.</returns>
@@ -47,7 +40,9 @@ namespace Manatee.Wpf.Converters
 		/// <param name="culture">The culture to use in the converter.</param>
 		public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
 		{
-			throw new NotImplementedException();
+			if (!(value is bool)) throw new ArgumentException($"value must be of type '{typeof(bool)}'");
+
+			return !(bool)value;
 		}
 	}
 }

@@ -49,7 +49,6 @@
   <ItemGroup>
     <Compile Include="BooleanInversionConverterTests.cs" />
     <Compile Include="BooleanLogicTests.cs" />
-    <Compile Include="NullToVisibilityTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -15,6 +15,6 @@
 				   TextWrapping="Wrap" TextAlignment="Center"/>
 		<Button Content="{Binding ButtonContent, ElementName=ErrorBannerRoot}"
 				Command="{Binding ButtonCommand, ElementName=ErrorBannerRoot}" HorizontalAlignment="Center" Margin="10"
-				Visibility="{Binding ShowButton, ElementName=ErrorBannerRoot, Converter={x:Static cvtr:BoolToVisibilityConverter.FalseToCollapsed}}"/>
+				Visibility="{Binding ShowButton, ElementName=ErrorBannerRoot, Converter={x:Static cvtr:BoolToVisibility.FalseToCollapsed}}"/>
 	</StackPanel>
 </UserControl>

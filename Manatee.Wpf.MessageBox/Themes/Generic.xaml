@@ -98,11 +98,11 @@
 						<TextBlock Grid.Column="1" Style="{StaticResource MessageBoxMessageStyle}" Text="{Binding Message}"/>
 						<StackPanel Grid.ColumnSpan="2" Grid.Row="1" Style="{StaticResource MessageBoxButtonPanelStyle}">
 							<Button x:Name="ConfirmButton" Command="{Binding Confirm}" Content="{Binding ConfirmText}" Style="{StaticResource MessageBoxButtonStyle}"
-									Visibility="{Binding ShowConfirm, Converter={x:Static cvtr:BoolToVisibilityConverter.FalseToCollapsed}}"/>
+									Visibility="{Binding ShowConfirm, Converter={x:Static cvtr:BoolToVisibility.FalseToCollapsed}}"/>
 							<Button x:Name="DeclineButton" Command="{Binding Decline}" Content="{Binding DeclineText}" Style="{StaticResource MessageBoxButtonStyle}"
-									Visibility="{Binding ShowDecline, Converter={x:Static cvtr:BoolToVisibilityConverter.FalseToCollapsed}}"/>
+									Visibility="{Binding ShowDecline, Converter={x:Static cvtr:BoolToVisibility.FalseToCollapsed}}"/>
 							<Button x:Name="CancelButton" Command="{Binding Cancel}" Content="{Binding CancelText}" Style="{StaticResource MessageBoxButtonStyle}"
-									Visibility="{Binding ShowCancel, Converter={x:Static cvtr:BoolToVisibilityConverter.FalseToCollapsed}}"/>
+									Visibility="{Binding ShowCancel, Converter={x:Static cvtr:BoolToVisibility.FalseToCollapsed}}"/>
 						</StackPanel>
 					</Grid>
 					<ControlTemplate.Triggers>

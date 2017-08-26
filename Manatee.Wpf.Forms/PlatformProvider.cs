@@ -7,11 +7,10 @@ namespace Manatee.Wpf.Forms
 {
 	internal class PlatformProvider : IPlatformProvider
 	{
-		public static PlatformProvider Instance { get; }
-
-		static PlatformProvider()
+		public static void Initialize()
 		{
-			Instance = new PlatformProvider();
+			if (ViewModel.PlatformProvider.Current == null)
+				ViewModel.PlatformProvider.Current = new PlatformProvider();
 		}
 		private PlatformProvider() { }
 

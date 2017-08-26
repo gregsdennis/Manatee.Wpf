@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace Manatee.Wpf.MessageBox
@@ -37,8 +38,7 @@ namespace Manatee.Wpf.MessageBox
 
 		static MessageBoxContent()
 		{
-			ViewModel.PlatformProvider.Current = PlatformProvider.Instance;
-
+			PlatformProvider.Initialize();
 
 			DefaultStyleKeyProperty.OverrideMetadata(typeof(MessageBoxContent), new FrameworkPropertyMetadata(typeof(MessageBoxContent)));
 		}

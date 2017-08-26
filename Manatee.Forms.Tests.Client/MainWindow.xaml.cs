@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Input;
 using Manatee.Wpf.Forms.ViewModel;
 using Manatee.Wpf.Forms.ViewModel.Validation;
 using Manatee.Wpf.MessageBox;
@@ -12,6 +13,9 @@ namespace Manatee.Wpf.Tests.Client
 	public partial class MainWindow : Window
 	{
 		public FormViewModel DataSource { get; }
+		public MessageBoxViewModel MessageBoxData { get; }
+
+		public ICommand ShowMessageBox { get; }
 
 		public MainWindow()
 		{
@@ -80,12 +84,41 @@ namespace Manatee.Wpf.Tests.Client
 			DataSource.AcceptRequested += (sender, args) => Close();
 			DataSource.CancelRequested += (sender, args) => Close();
 
+			MessageBoxData = new MessageBoxViewModel
+				{
+					Title = "Title",
+					Message = "This is some text in the message box.",
+					Icon = MessageBoxIcon.Info,
+					ShowConfirm = true,
+					ConfirmText = "OK",
+					ShowDecline = false,
+					DeclineText = "No",
+					ShowCancel = true,
+					CancelText = "Cancel",
+					DefaultAction = MessageBoxAction.Confirm,
+					AllowNonResponse = false
+				};
+			ShowMessageBox = new SimpleCommand(_ShowMessage);
+
 			InitializeComponent();
 		}
 
-		private void _ShowMessage(object sender, RoutedEventArgs e)
+		private void _ShowMessage()
 		{
-			var vm = MessageBoxViewModel.FromParams(MessageBoxParams.Ok("A Message", Message.Text, MessageBoxIcon.Info));
+			var vm = new MessageBoxViewModel
+				{
+					Title = MessageBoxData.Title,
+					Message = MessageBoxData.Message,
+					Icon = MessageBoxData.Icon,
+					ShowConfirm = MessageBoxData.ShowConfirm,
+					ConfirmText = MessageBoxData.ConfirmText,
+					ShowDecline = MessageBoxData.ShowDecline,
+					DeclineText = MessageBoxData.DeclineText,
+					ShowCancel = MessageBoxData.ShowCancel,
+					CancelText = MessageBoxData.CancelText,
+					DefaultAction = MessageBoxData.DefaultAction,
+					AllowNonResponse = MessageBoxData.AllowNonResponse
+				};
 
 			var view = new MessageBoxView
 				{

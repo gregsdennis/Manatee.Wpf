@@ -6,6 +6,10 @@
 	public enum MessageBoxAction
 	{
 		/// <summary>
+		/// Indicates no action was taken.
+		/// </summary>
+		None,
+		/// <summary>
 		/// Indicates the user chose to cancel.
 		/// </summary>
 		Cancel,
