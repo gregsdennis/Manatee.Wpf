@@ -39,19 +39,19 @@ namespace Manatee.Wpf.Tests.Client
 
 		public ICommand ShowMouseOverText { get; }
 
-		public string DummyStringValue
+		public string DummyStringFormatValue
 		{
-			get { return (string)GetValue(DummyStringValueProperty); }
-			set { SetValue(DummyStringValueProperty, value); }
+			get { return (string)GetValue(DummyStringFormatValueProperty); }
+			set { SetValue(DummyStringFormatValueProperty, value); }
 		}
 
 		// Using a DependencyProperty as the backing store for DummyStringValue.  This enables animation, styling, binding, etc...
-		public static readonly DependencyProperty DummyStringValueProperty =
-			DependencyProperty.Register("DummyStringValue", typeof(string), typeof(MainWindow), new PropertyMetadata(string.Empty));
+		public static readonly DependencyProperty DummyStringFormatValueProperty =
+			DependencyProperty.Register("DummyStringFormatValue", typeof(string), typeof(MainWindow), new PropertyMetadata(string.Empty));
 		
 		#endregion
 
-		#region LoadableContent
+		#region Other Controls
 
 		public bool LoadWithError
 		{
@@ -84,6 +84,18 @@ namespace Manatee.Wpf.Tests.Client
 		// Using a DependencyProperty as the backing store for IsBusy.  This enables animation, styling, binding, etc...
 		public static readonly DependencyProperty IsBusyProperty =
 			DependencyProperty.Register("IsBusy", typeof(bool), typeof(MainWindow), new PropertyMetadata(false));
+		
+		public string DummyNumericFormatValue
+		{
+			get { return (string)GetValue(DummyNumericFormatValueProperty); }
+			set { SetValue(DummyNumericFormatValueProperty, value); }
+		}
+
+		// Using a DependencyProperty as the backing store for DummyNumericFormat.  This enables animation, styling, binding, etc...
+		public static readonly DependencyProperty DummyNumericFormatValueProperty =
+			DependencyProperty.Register("DummyNumericFormatValue", typeof(string), typeof(MainWindow), new PropertyMetadata(string.Empty));
+
+
 
 		#endregion
 

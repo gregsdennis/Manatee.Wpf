@@ -57,6 +57,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="NumericFormatExampleValidationRule.cs" />
     <Compile Include="SimpleCommand.cs" />
     <Compile Include="StringFormatConverterExampleValidationRule.cs" />
     <Page Include="MainWindow.xaml">
@@ -91,7 +92,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Themes\LoadableContent.xaml">
+    <Page Include="Themes\OtherControls.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

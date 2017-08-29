@@ -245,8 +245,7 @@ namespace Manatee.Wpf
 
 		private static object _CoerceNumericValue(DependencyObject d, object value)
 		{
-			var numericTextBox = d as NumericTextBox;
-			if (numericTextBox == null) return value;
+			if (!(d is NumericTextBox numericTextBox)) return value;
 
 			if (value == null || (decimal?) value <= _maxValue / numericTextBox._multiplier) return value;
 			return numericTextBox.NumericValue;
@@ -254,18 +253,17 @@ namespace Manatee.Wpf
 
 		private static void _OnFormatChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		{
-			var numericTextBox = d as NumericTextBox;
-			if (numericTextBox == null) return;
-
-			var text = e.NewValue as string;
-			if (text == null)
+			if (!(d is NumericTextBox numericTextBox)) return;
+			if (!(e.NewValue is string text))
 				throw new ArgumentNullException(nameof(Format));
+
 			var text2 = 0.ToString(text);
 			var num = text2.LastIndexOf('.');
 			var num2 = text2.LastIndexOfAny(Enumerable.Range(48, 57).Select(Convert.ToChar).ToArray());
 			numericTextBox._multiplier = Math.Max(num == -1 ? 1 : (int) Math.Pow(10.0, num2 - num), 1);
 			if (numericTextBox.Format.Contains(NumberFormatInfo.InvariantInfo.PercentSymbol) || numericTextBox.Format.ToLower() == "p")
 				numericTextBox._multiplier *= 100;
+			numericTextBox._SetTextToNumericValue();
 		}
 	}
 }

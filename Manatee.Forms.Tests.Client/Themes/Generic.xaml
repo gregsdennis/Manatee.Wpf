@@ -5,6 +5,6 @@
 		<ResourceDictionary Source="MessageBox.xaml"/>
 		<ResourceDictionary Source="Converters.xaml"/>
 		<ResourceDictionary Source="EventBinding.xaml"/>
-		<ResourceDictionary Source="LoadableContent.xaml"/>
+		<ResourceDictionary Source="OtherControls.xaml"/>
 	</ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
