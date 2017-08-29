@@ -109,10 +109,7 @@ namespace Manatee.Wpf
 
 		private static string _GenerateIdFromBoundPropertyPath(DependencyObject d)
 		{
-			var automate = d as IAutomate;
-			var dependencyProperty = automate != null
-				                         ? automate.AutomationProperty
-				                         : _GetDependencyProperty(d);
+			var dependencyProperty = _GetDependencyProperty(d);
 			if (dependencyProperty != null)
 				_WaitForBindingAndSet(dependencyProperty, d);
 			return null;
@@ -122,6 +119,8 @@ namespace Manatee.Wpf
 		{
 			switch (d)
 			{
+				case IAutomate automate:
+					return automate.AutomationProperty;
 				case TextBox _:
 					return TextBox.TextProperty;
 				case TextBlock _:

@@ -14,7 +14,7 @@ namespace Manatee.Wpf
 	/// </summary>
 	public class NumericTextBox : TextBox, IAutomate
 	{
-		private static readonly decimal MaxValue = (decimal) Math.Pow(10.0, 27.0);
+		private static readonly decimal _maxValue = (decimal) Math.Pow(10.0, 27.0);
 
 		private readonly StringBuilder _numericRawValue = new StringBuilder();
 		private int _digitsAfterCursor;
@@ -121,8 +121,7 @@ namespace Manatee.Wpf
 		/// <param name="e"></param>
 		private static void _Pasting(object sender, DataObjectPastingEventArgs e)
 		{
-			var numericTextBox = sender as NumericTextBox;
-			if (numericTextBox == null) return;
+			if (!(sender is NumericTextBox numericTextBox)) return;
 			if (e.DataObject.GetDataPresent(typeof(string)))
 			{
 				var source = (string) e.DataObject.GetData(typeof(string));
@@ -249,7 +248,7 @@ namespace Manatee.Wpf
 			var numericTextBox = d as NumericTextBox;
 			if (numericTextBox == null) return value;
 
-			if (value == null || (decimal?) value <= MaxValue / numericTextBox._multiplier) return value;
+			if (value == null || (decimal?) value <= _maxValue / numericTextBox._multiplier) return value;
 			return numericTextBox.NumericValue;
 		}
 

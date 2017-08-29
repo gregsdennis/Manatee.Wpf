@@ -25,6 +25,16 @@ namespace Manatee.Wpf.Tests.Client
 		public static readonly DependencyProperty IsMouseOverTextVisibleProperty =
 			DependencyProperty.Register("IsMouseOverTextVisible", typeof(bool), typeof(MainWindow), new PropertyMetadata(false));
 
+		public string DummyStringValue
+		{
+			get { return (string)GetValue(DummyStringValueProperty); }
+			set { SetValue(DummyStringValueProperty, value); }
+		}
+
+		// Using a DependencyProperty as the backing store for DummyStringValue.  This enables animation, styling, binding, etc...
+		public static readonly DependencyProperty DummyStringValueProperty =
+			DependencyProperty.Register("DummyStringValue", typeof(string), typeof(MainWindow), new PropertyMetadata(string.Empty));
+
 		public ICommand ShowMessageBox { get; }
 		public ICommand ShowMouseOverText { get; }
 
