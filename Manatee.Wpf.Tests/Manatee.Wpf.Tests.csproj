@@ -47,8 +47,8 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BooleanInversionConverterTests.cs" />
-    <Compile Include="BooleanLogicTests.cs" />
+    <Compile Include="Converters\BooleanInversionConverterTests.cs" />
+    <Compile Include="Converters\BooleanLogicTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

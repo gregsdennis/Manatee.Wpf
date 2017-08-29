@@ -13,8 +13,6 @@ namespace Manatee.Wpf
 	/// </summary>
 	public static class Automation
 	{
-		private static readonly ParameterizedTypeSwitch<DependencyObject, DependencyProperty> PropertySwitch;
-
 		/// <summary>
 		///     Tracks whether a control will have an Automation ID generated for it.
 		/// </summary>
@@ -30,19 +28,6 @@ namespace Manatee.Wpf
 			AutoProperty = DependencyProperty.RegisterAttached("Auto", typeof(bool), typeof(Automation), new PropertyMetadata(false, _OnAutoChanged));
 			AutomationIdOverrideProperty = DependencyProperty.RegisterAttached("AutomationIdOverride", typeof(string), typeof(Automation),
 			                                                                   new PropertyMetadata(string.Empty, _OnAutomationIdOverrideChange));
-
-			var parameterizedTypeSwitch = new ParameterizedTypeSwitch<DependencyObject, DependencyProperty>
-				{
-					Default = obj => null,
-					CheckInheritance = true
-				};
-
-			PropertySwitch = parameterizedTypeSwitch;
-			PropertySwitch.Case<TextBox>(tb => TextBox.TextProperty);
-			PropertySwitch.Case<TextBlock>(tb => TextBlock.TextProperty);
-			PropertySwitch.Case<ToggleButton>(tb => ToggleButton.IsCheckedProperty);
-			PropertySwitch.Case<ButtonBase>(tb => ButtonBase.CommandProperty);
-			PropertySwitch.Case<ItemsControl>(tb => ItemsControl.ItemsSourceProperty);
 		}
 
 		private static void _OnAutomationIdOverrideChange(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -127,10 +112,29 @@ namespace Manatee.Wpf
 			var automate = d as IAutomate;
 			var dependencyProperty = automate != null
 				                         ? automate.AutomationProperty
-				                         : PropertySwitch.Invoke(d);
+				                         : _GetDependencyProperty(d);
 			if (dependencyProperty != null)
 				_WaitForBindingAndSet(dependencyProperty, d);
 			return null;
+		}
+
+		private static DependencyProperty _GetDependencyProperty(DependencyObject d)
+		{
+			switch (d)
+			{
+				case TextBox _:
+					return TextBox.TextProperty;
+				case TextBlock _:
+					return TextBlock.TextProperty;
+				case ToggleButton _:
+					return ToggleButton.IsCheckedProperty;
+				case ButtonBase _:
+					return ButtonBase.CommandProperty;
+				case ItemsControl _:
+					return ItemsControl.ItemsSourceProperty;
+				default:
+					return null;
+			}
 		}
 
 		private static void _WaitForBindingAndSet(DependencyProperty dp, DependencyObject d)

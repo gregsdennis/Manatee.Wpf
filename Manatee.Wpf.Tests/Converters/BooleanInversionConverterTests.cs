@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Manatee.Wpf.Converters;
 using NUnit.Framework;
 
-namespace Manatee.Wpf.Tests
+namespace Manatee.Wpf.Tests.Converters
 {
-	public class BooleanInversionConverterTests
+	public class BooleanInverterTests
 	{
 		[TestCase(false, true)]
 		[TestCase(true, false)]

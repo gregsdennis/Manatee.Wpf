@@ -4,5 +4,6 @@
 		<ResourceDictionary Source="Forms.xaml"/>
 		<ResourceDictionary Source="MessageBox.xaml"/>
 		<ResourceDictionary Source="Converters.xaml"/>
+		<ResourceDictionary Source="EventBinding.xaml"/>
 	</ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

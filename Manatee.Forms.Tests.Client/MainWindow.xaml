@@ -9,5 +9,6 @@
 		<TabItem Header="Forms" ContentTemplate="{StaticResource Forms}"/>
 		<TabItem Header="Message Boxes" ContentTemplate="{StaticResource MessageBox}"/>
 		<TabItem Header="Converters" ContentTemplate="{StaticResource Converters}"/>
+		<TabItem Header="Event Binding" ContentTemplate="{StaticResource EventBinding}"/>
 	</TabControl>
 </Window>

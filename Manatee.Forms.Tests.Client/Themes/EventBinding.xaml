@@ -1,0 +1,26 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+					xmlns:cvtr="clr-namespace:Manatee.Wpf.Converters;assembly=Manatee.Wpf"
+					xmlns:wpf="clr-namespace:Manatee.Wpf;assembly=Manatee.Wpf"
+					xmlns:system="clr-namespace:System;assembly=mscorlib">
+	<DataTemplate x:Key="EventBinding">
+		<Grid Height="200">
+			<Grid.RowDefinitions>
+				<RowDefinition/>
+				<RowDefinition/>
+			</Grid.RowDefinitions>
+			<TextBlock TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10">
+				<Run Text="The box below has its MouseEnter event wired to a command on the main window that will trigger text to appear for a short time."/><Run
+					 Text="{x:Static system:Environment.NewLine}"/><Run
+					 Text="To be clear, this is not controlled by an event handler, but a command." FontWeight="Bold"/><Run
+					 Text="{x:Static system:Environment.NewLine}"/><Run
+					 Text="Try it out!"/>
+			</TextBlock>
+			<Border Grid.Row="1" BorderBrush="Blue" BorderThickness="2" CornerRadius="2" Background="DodgerBlue" Margin="10"
+					MouseEnter="{wpf:EventBinding ShowMouseOverText, ElementName=Root}">
+				<TextBlock Text="You did it!" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Foreground="White"
+						   Visibility="{Binding IsMouseOverTextVisible, ElementName=Root, Converter={x:Static cvtr:BoolToVisibility.FalseToCollapsed}}"/>
+			</Border>
+		</Grid>
+	</DataTemplate>
+</ResourceDictionary>

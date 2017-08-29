@@ -4,7 +4,7 @@ using System.Windows;
 using Manatee.Wpf.Converters;
 using NUnit.Framework;
 
-namespace Manatee.Wpf.Tests
+namespace Manatee.Wpf.Tests.Converters
 {
 	public class BooleanLogicTests
 	{

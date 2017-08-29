@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using Manatee.Wpf.Forms.ViewModel;
 using Manatee.Wpf.Forms.ViewModel.Validation;
@@ -15,7 +16,17 @@ namespace Manatee.Wpf.Tests.Client
 		public FormViewModel DataSource { get; }
 		public MessageBoxViewModel MessageBoxData { get; }
 
+		public bool IsMouseOverTextVisible
+		{
+			get { return (bool)GetValue(IsMouseOverTextVisibleProperty); }
+			set { SetValue(IsMouseOverTextVisibleProperty, value); }
+		}
+
+		public static readonly DependencyProperty IsMouseOverTextVisibleProperty =
+			DependencyProperty.Register("IsMouseOverTextVisible", typeof(bool), typeof(MainWindow), new PropertyMetadata(false));
+
 		public ICommand ShowMessageBox { get; }
+		public ICommand ShowMouseOverText { get; }
 
 		public MainWindow()
 		{
@@ -99,8 +110,16 @@ namespace Manatee.Wpf.Tests.Client
 					AllowNonResponse = false
 				};
 			ShowMessageBox = new SimpleCommand(_ShowMessage);
+			ShowMouseOverText = new SimpleCommand(_ShowMouseOverText);
 
 			InitializeComponent();
+		}
+
+		private async void _ShowMouseOverText()
+		{
+			IsMouseOverTextVisible = true;
+			await Task.Delay(3000);
+			IsMouseOverTextVisible = false;
 		}
 
 		private void _ShowMessage()

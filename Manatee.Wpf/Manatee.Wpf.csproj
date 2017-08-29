@@ -89,6 +89,7 @@
     <Compile Include="ErrorBanner.xaml.cs">
       <DependentUpon>ErrorBanner.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EventBinding.cs" />
     <Compile Include="IAutomate.cs" />
     <Compile Include="KeyExtensions.cs" />
     <Compile Include="LoadableContent.xaml.cs">
@@ -98,7 +99,6 @@
     <Compile Include="Converters\NullImage.cs" />
     <Compile Include="Converters\NullToBoolean.cs" />
     <Compile Include="NumericTextBox.cs" />
-    <Compile Include="ParameterizedTypeSwitch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
