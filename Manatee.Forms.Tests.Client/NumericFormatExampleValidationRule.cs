@@ -13,7 +13,7 @@ namespace Manatee.Wpf.Tests.Client
 		{
 			try
 			{
-				return new ValidationResult(true, 1.ToString(value as string));
+				return new ValidationResult(true, 1.0.ToString(value as string));
 			}
 			catch (ArgumentNullException e)
 			{

@@ -47,7 +47,7 @@
 						</TextBox.Text>
 					</TextBox>
 					<Label Target="{Binding ElementName=NumericTextBox}" Content="Enter a number"/>
-					<wpf:NumericTextBox x:Name="NumericTextBox" Format="{Binding DummyNumericFormatValue, ElementName=Root}"/>
+					<wpf:NumericTextBox x:Name="NumericTextBox" Format="{Binding DummyNumericFormatValue, ElementName=Root, Mode=OneWay}"/>
 				</StackPanel>
 			</GroupBox>
 		</StackPanel>

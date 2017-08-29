@@ -14,7 +14,7 @@ namespace Manatee.Wpf
 	/// </summary>
 	public class NumericTextBox : TextBox, IAutomate
 	{
-		private static readonly decimal _maxValue = (decimal) Math.Pow(10.0, 27.0);
+		private static readonly double _maxValue = Math.Pow(10.0, 27.0);
 
 		private readonly StringBuilder _numericRawValue = new StringBuilder();
 		private int _digitsAfterCursor;
@@ -32,9 +32,9 @@ namespace Manatee.Wpf
 		/// <summary>
 		///     Indicates the numeric value.
 		/// </summary>
-		public decimal? NumericValue
+		public double? NumericValue
 		{
-			get { return (decimal?) GetValue(NumericValueProperty); }
+			get { return (double?) GetValue(NumericValueProperty); }
 			set { SetValue(NumericValueProperty, value); }
 		}
 		/// <summary>
@@ -49,7 +49,7 @@ namespace Manatee.Wpf
 
 		static NumericTextBox()
 		{
-			NumericValueProperty = DependencyProperty.Register("NumericValue", typeof(decimal?), typeof(NumericTextBox),
+			NumericValueProperty = DependencyProperty.Register("NumericValue", typeof(double?), typeof(NumericTextBox),
 			                                                   new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.None, _OnNumericValueChanged, _CoerceNumericValue)
 				                                                   {
 					                                                   BindsTwoWayByDefault = true,
@@ -160,7 +160,7 @@ namespace Manatee.Wpf
 
 		private void _HandleBackKey(Key key)
 		{
-			if (_numericRawValue.Length <= 0 || NumericValue == 0m)
+			if (_numericRawValue.Length <= 0 || NumericValue == 0)
 			{
 				_numericRawValue.Clear();
 				NumericValue = null;
@@ -240,14 +240,14 @@ namespace Manatee.Wpf
 
 		private void _UpdateNumericValue()
 		{
-			NumericValue = _numericRawValue.Length > 0 ? decimal.Parse(_numericRawValue.ToString()) / _multiplier : (decimal?) null;
+			NumericValue = _numericRawValue.Length > 0 ? double.Parse(_numericRawValue.ToString()) / _multiplier : (double?) null;
 		}
 
 		private static object _CoerceNumericValue(DependencyObject d, object value)
 		{
 			if (!(d is NumericTextBox numericTextBox)) return value;
 
-			if (value == null || (decimal?) value <= _maxValue / numericTextBox._multiplier) return value;
+			if (value == null || (double?) value <= _maxValue / numericTextBox._multiplier) return value;
 			return numericTextBox.NumericValue;
 		}
 
