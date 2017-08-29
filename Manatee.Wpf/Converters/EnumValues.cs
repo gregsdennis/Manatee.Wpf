@@ -13,7 +13,7 @@ namespace Manatee.Wpf.Converters
 		/// <summary>
 		/// Returns the typed values.
 		/// </summary>
-		public static EnumValues Values { get; }
+		public static EnumValues RawValues { get; }
 		/// <summary>
 		/// Returns the UI strings for each value via the <see cref="EnumToUiString"/>.
 		/// </summary>
@@ -23,7 +23,7 @@ namespace Manatee.Wpf.Converters
 
 		static EnumValues()
 		{
-			Values = new EnumValues(false);
+			RawValues = new EnumValues(false);
 			UiStrings = new EnumValues(true);
 		}
 		private EnumValues(bool returnUiStrings)

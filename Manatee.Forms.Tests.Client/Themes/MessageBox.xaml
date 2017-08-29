@@ -39,10 +39,10 @@
 						 IsEnabled="{Binding IsChecked, ElementName=ShowCancel}" Margin="5,0,0,0"/>
 			</Grid>
 			<Label Target="{Binding ElementName=DefaultAction}" Content="Default Action"/>
-			<ComboBox x:Name="DefaultAction" ItemsSource="{Binding Source={x:Type vm:MessageBoxAction}, Converter={x:Static cvtr:EnumValues.Values}}"
+			<ComboBox x:Name="DefaultAction" ItemsSource="{Binding Source={x:Type vm:MessageBoxAction}, Converter={x:Static cvtr:EnumValues.RawValues}}"
 					  SelectedItem="{Binding MessageBoxData.DefaultAction, ElementName=Root}" Margin="5,0,5,5"/>
 			<Label Target="{Binding ElementName=Icon}" Content="Icon"/>
-			<ComboBox x:Name="Icon" ItemsSource="{Binding Source={x:Type vm:MessageBoxIcon}, Converter={x:Static cvtr:EnumValues.Values}}"
+			<ComboBox x:Name="Icon" ItemsSource="{Binding Source={x:Type vm:MessageBoxIcon}, Converter={x:Static cvtr:EnumValues.RawValues}}"
 					  SelectedItem="{Binding MessageBoxData.Icon, ElementName=Root}" Margin="5,0,5,5"/>
 			<CheckBox Content="Allow user to close with 'X' button" Margin="5"
 					  IsChecked="{Binding MessageBoxData.AllowNonResponse, ElementName=Root, UpdateSourceTrigger=PropertyChanged}"/>

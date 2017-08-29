@@ -149,13 +149,15 @@ namespace Manatee.Wpf.Converters
 
 		private static object[] _PerformConversion(object converter, object[] values, Type targetType, object parameter, CultureInfo culture)
 		{
-			var single = converter as IValueConverter;
-			if (single != null)
-				return new[] {single.Convert(values[0], targetType, parameter, culture)};
-			var multi = converter as IMultiValueConverter;
-			if (multi != null)
-				return new[] {multi.Convert(values, targetType, parameter, culture)};
-			throw new ArgumentOutOfRangeException(nameof(converter));
+			switch (converter)
+			{
+				case IValueConverter single:
+					return new[] {single.Convert(values[0], targetType, parameter, culture)};
+				case IMultiValueConverter multi:
+					return new[] {multi.Convert(values, targetType, parameter, culture)};
+				default:
+					throw new ArgumentOutOfRangeException(nameof(converter));
+			}
 		}
 	}
 }

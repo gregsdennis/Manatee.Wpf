@@ -56,7 +56,7 @@
 						<Run Text="App.xaml.cs" FontStyle="Italic"/>
 					</TextBlock>
 					<ComboBox x:Name="EnumToUiStringSource" Grid.Row="1" SelectedIndex="0" Margin="0,5,0,0"
-							  ItemsSource="{Binding Source={x:Type sys:DayOfWeek}, Converter={x:Static cvtr:EnumValues.Values}}"/>
+							  ItemsSource="{Binding Source={x:Type sys:DayOfWeek}, Converter={x:Static cvtr:EnumValues.RawValues}}"/>
 					<TextBlock Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center"
 							   Text="{Binding SelectedItem, ElementName=EnumToUiStringSource, Converter={x:Static cvtr:EnumToUiString.Instance}}"/>
 				</Grid>
@@ -86,6 +86,11 @@
 						<TextBlock TextWrapping="Wrap">
 							<TextBlock.Text>
 								<MultiBinding Converter="{x:Static cvtr:StringFormatter.Instance}">
+									<!-- We need to run this first binding through the backing property
+									     instead of binding directly to the TextBox because even though
+									     validation occurs, the TextBox still allows entry which could
+									     result in an invalid format, throwing an exception. The backing
+									     property only updates if validation succeeds, however. -->
 									<Binding ElementName="Root" Path="DummyStringValue"/>
 									<Binding ElementName="Data1" Path="Text"/>
 									<Binding ElementName="Data2" Path="Text"/>

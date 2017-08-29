@@ -6,6 +6,9 @@ namespace Manatee.Wpf.Tests.Client
 {
 	internal class StringFormatConverterExampleValidationRule : ValidationRule
 	{
+		// Ordinarily, we don't use exception handling for flow.
+		// But for this example code, it's the easiest way to determine that
+		// a format string is valid.
 		public override ValidationResult Validate(object value, CultureInfo cultureInfo)
 		{
 			try

@@ -21,6 +21,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -58,10 +60,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="LoadableContent.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Themes\Automation.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -69,6 +67,10 @@
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\LoadableContent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\NumericTextBox.xaml">
       <SubType>Designer</SubType>
@@ -92,12 +94,10 @@
     <Compile Include="EventBinding.cs" />
     <Compile Include="IAutomate.cs" />
     <Compile Include="KeyExtensions.cs" />
-    <Compile Include="LoadableContent.xaml.cs">
-      <DependentUpon>LoadableContent.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Converters\LogicInverter.cs" />
     <Compile Include="Converters\NullImage.cs" />
     <Compile Include="Converters\NullToBoolean.cs" />
+    <Compile Include="LoadableContent.cs" />
     <Compile Include="NumericTextBox.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

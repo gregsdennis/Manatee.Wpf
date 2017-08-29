@@ -26,7 +26,7 @@ namespace Manatee.Wpf
 		{
 			obj.SetValue(CommandProperty, value);
 		}
-		public static readonly DependencyProperty CommandProperty =
+		private static readonly DependencyProperty CommandProperty =
 			DependencyProperty.RegisterAttached("Command", typeof(ICommand), typeof(EventBinding), new PropertyMetadata(null));
 		// ReSharper restore InconsistentNaming
 

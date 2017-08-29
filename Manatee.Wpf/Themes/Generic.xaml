@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
 	<ResourceDictionary.MergedDictionaries>
 		<ResourceDictionary Source="pack://application:,,,/Manatee.Wpf;component/Themes/Automation.xaml"/>
+		<ResourceDictionary Source="pack://application:,,,/Manatee.Wpf;component/Themes/LoadableContent.xaml"/>
 		<ResourceDictionary Source="pack://application:,,,/Manatee.Wpf;component/Themes/NumericTextBox.xaml"/>
 	</ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

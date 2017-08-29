@@ -16,36 +16,33 @@ namespace Manatee.Wpf.Converters
 
 		private readonly bool _isInverted;
 		private readonly Func<string, bool> _stringTest;
-		private readonly string _name;
 
 		/// <summary>
 		/// Converts null to <b>true</b> and non-null to <b>false</b>.
 		/// </summary>
 		public static StringNullability IsNull =>
-			_isNull ?? (_isNull = new StringNullability(false, s => s == null, nameof(IsNull)));
+			_isNull ?? (_isNull = new StringNullability(false, s => s == null));
 		/// <summary>
 		/// Converts null or whitespace to <b>true</b> and non-null, non-whitespace to <b>false</b>.
 		/// </summary>
 		public static StringNullability IsNullOrWhitespace =>
-			_isNullOrWhitespace ?? (_isNullOrWhitespace = new StringNullability(false, string.IsNullOrWhiteSpace, nameof(IsNullOrWhitespace)));
+			_isNullOrWhitespace ?? (_isNullOrWhitespace = new StringNullability(false, string.IsNullOrWhiteSpace));
 		/// <summary>
 		/// Converts null to <b>false</b> and non-null to <b>true</b>.
 		/// </summary>
 		public static StringNullability IsNotNull =>
-			_isNotNull ?? (_isNotNull = new StringNullability(true, s => s == null, nameof(IsNotNull)));
+			_isNotNull ?? (_isNotNull = new StringNullability(true, s => s == null));
 		/// <summary>
 		/// Converts null or whitespace to <b>false</b> and non-null, non-whitespace to <b>true</b>.
 		/// </summary>
 		public static StringNullability IsNotNullOrNotWhitespace =>
-			_isNotNullOrWhitespace ?? (_isNotNullOrWhitespace = new StringNullability(true, string.IsNullOrWhiteSpace, nameof(IsNotNullOrNotWhitespace)));
+			_isNotNullOrWhitespace ?? (_isNotNullOrWhitespace = new StringNullability(true, string.IsNullOrWhiteSpace));
 
-		private StringNullability(bool isInverted, Func<string, bool> stringTest, string name)
+		private StringNullability(bool isInverted, Func<string, bool> stringTest)
 		{
 			_isInverted = isInverted;
 			_stringTest = stringTest;
-			_name = name;
 		}
-
 
 		/// <summary>Converts a value. </summary>
 		/// <returns>A converted value. If the method returns null, the valid null value is used.</returns>

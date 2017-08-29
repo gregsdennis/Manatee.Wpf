@@ -9,7 +9,7 @@
 			 d:DesignHeight="300" d:DesignWidth="300"
 			 x:Name="ErrorBannerRoot">
 	<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-		<fa:FontAwesome Icon="ExclamationTriangle" FontSize="36"
+		<fa:FontAwesome Icon="{Binding Icon, ElementName=ErrorBannerRoot}" FontSize="36"
 						Foreground="{Binding IconBrush, ElementName=ErrorBannerRoot}"/>
 		<TextBlock Text="{Binding ErrorMessage, ElementName=ErrorBannerRoot}" HorizontalAlignment="Center" Margin="10" FontWeight="Bold"
 				   TextWrapping="Wrap" TextAlignment="Center"/>
