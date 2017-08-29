@@ -10,8 +10,8 @@
 						<ContentPresenter Content="{TemplateBinding Content}">
 							<ContentPresenter.Visibility>
 								<MultiBinding Converter="{cvtr:Aggregator {x:Static cvtr:BooleanLogic.Or}, {x:Static cvtr:BoolToVisibility.TrueToCollapsed}}">
-									<Binding Path="ShowBusy" ElementName="LoadableContentRoot"/>
-									<Binding Path="ShowError" ElementName="LoadableContentRoot"/>
+									<Binding Path="ShowBusy" RelativeSource="{RelativeSource TemplatedParent}"/>
+									<Binding Path="ShowError" RelativeSource="{RelativeSource TemplatedParent}"/>
 								</MultiBinding>
 							</ContentPresenter.Visibility>
 						</ContentPresenter>
