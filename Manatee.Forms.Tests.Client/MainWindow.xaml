@@ -10,6 +10,6 @@
 		<TabItem Header="Message Boxes" ContentTemplate="{StaticResource MessageBox}"/>
 		<TabItem Header="Converters" ContentTemplate="{StaticResource Converters}"/>
 		<TabItem Header="Event Binding" ContentTemplate="{StaticResource EventBinding}"/>
-		<TabItem Header="Loadable Content" ContentTemplate="{StaticResource OtherControls}"/>
+		<TabItem Header="Other Controls" ContentTemplate="{StaticResource OtherControls}"/>
 	</TabControl>
 </Window>
