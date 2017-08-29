@@ -16,7 +16,7 @@
 	
 	<DataTemplate DataType="{x:Type vm:NumericField}">
 		<StackPanel>
-			<TextBlock Text="{Binding Label}" Margin="0,0,0,3"/>
+			<Label Target="{Binding ElementName=TheBox}" Content="{Binding Label}"/>
 			<ctrl:NumericTextBox x:Name="TheBox" Format="{Binding StringFormat}"
 			                     NumericValue="{Binding Value, UpdateSourceTrigger=PropertyChanged}"
 			                     HorizontalContentAlignment="Right"/>
@@ -31,7 +31,7 @@
 	
 	<DataTemplate DataType="{x:Type vm:StringField}">
 		<StackPanel>
-			<TextBlock Text="{Binding Label}" Margin="0,0,0,3"/>
+			<Label Target="{Binding ElementName=TheBox}" Content="{Binding Label}"/>
 			<TextBox x:Name="TheBox" Text="{Binding Value, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap"/>
 			<ItemsControl ItemsSource="{Binding ErrorMessages}" Style="{DynamicResource ErrorMessageListStyle}"/>
 		</StackPanel>
@@ -45,7 +45,7 @@
 	<!-- Data type is SelectorField<T> but we can't do generics in XAML... -->
 	<DataTemplate x:Key="SelectorTemplate">
 		<StackPanel>
-			<TextBlock Text="{Binding Label}" Margin="0,0,0,3"/>
+			<Label Target="{Binding ElementName=TheBox}" Content="{Binding Label}"/>
 			<ComboBox x:Name="TheBox" ItemsSource="{Binding Options}"
 					  SelectedItem="{Binding Value, UpdateSourceTrigger=PropertyChanged}"/>
 			<ItemsControl ItemsSource="{Binding ErrorMessages}" Style="{DynamicResource ErrorMessageListStyle}"/>
@@ -59,7 +59,7 @@
 	
 	<DataTemplate DataType="{x:Type vm:DateField}">
 		<StackPanel>
-			<TextBlock Text="{Binding Label}" Margin="0,0,0,3"/>
+			<Label Target="{Binding ElementName=TheBox}" Content="{Binding Label}"/>
 			<DatePicker x:Name="TheBox" SelectedDate="{Binding Value, UpdateSourceTrigger=PropertyChanged}"
 						SelectedDateFormat="Short"/>
 			<ItemsControl ItemsSource="{Binding ErrorMessages}" Style="{DynamicResource ErrorMessageListStyle}"/>

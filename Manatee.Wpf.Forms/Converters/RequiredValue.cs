@@ -26,8 +26,7 @@ namespace Manatee.Wpf.Forms.Converters
 
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
-			var collection = value as IEnumerable;
-			if (collection == null) return false;
+			if (!(value is IEnumerable collection)) return false;
 
 			var hasRequiredRule = collection.Cast<object>().Any(o => o.GetType().InheritsOrImplements(typeof(RequiredValueRule<>)));
 

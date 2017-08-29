@@ -54,7 +54,7 @@
 											Margin="5" Padding="10,5"/>
 									<Button Content="{Binding FormDataSource.CancelText, RelativeSource={RelativeSource TemplatedParent}}"
 											Command="{Binding FormDataSource.Cancel, RelativeSource={RelativeSource TemplatedParent}}"
-											Visibility="{Binding FormDataSource.ShowCancel, RelativeSource={RelativeSource TemplatedParent}}"
+											Visibility="{Binding FormDataSource.ShowCancel, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static cvtr:BoolToVisibility.FalseToCollapsed}}"
 											Margin="5" Padding="10,5"/>
 								</StackPanel>
 							</Border>

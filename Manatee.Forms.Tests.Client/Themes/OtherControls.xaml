@@ -47,6 +47,11 @@
 						</TextBox.Text>
 					</TextBox>
 					<Label Target="{Binding ElementName=NumericTextBox}" Content="Enter a number"/>
+					<!-- We need to run this first binding through the backing property
+						 instead of binding directly to the TextBox because even though
+						 validation occurs, the TextBox still allows entry which could
+						 result in an invalid format, throwing an exception. The backing
+						 property only updates if validation succeeds, however. -->
 					<wpf:NumericTextBox x:Name="NumericTextBox" Format="{Binding DummyNumericFormatValue, ElementName=Root, Mode=OneWay}"/>
 				</StackPanel>
 			</GroupBox>

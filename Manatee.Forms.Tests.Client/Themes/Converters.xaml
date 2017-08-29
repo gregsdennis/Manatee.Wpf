@@ -69,7 +69,7 @@
 					<Label Target="{Binding ElementName=FormatSource}" Content="Format"/>
 					<TextBox x:Name="FormatSource">
 						<TextBox.Text>
-							<Binding Path="DummyStringValue" ElementName="Root" UpdateSourceTrigger="PropertyChanged">
+							<Binding Path="DummyStringFormatValue" ElementName="Root" UpdateSourceTrigger="PropertyChanged">
 								<Binding.ValidationRules>
 									<local:StringFormatConverterExampleValidationRule/>
 								</Binding.ValidationRules>
@@ -91,7 +91,7 @@
 									     validation occurs, the TextBox still allows entry which could
 									     result in an invalid format, throwing an exception. The backing
 									     property only updates if validation succeeds, however. -->
-									<Binding ElementName="Root" Path="DummyStringValue"/>
+									<Binding ElementName="Root" Path="DummyStringFormatValue"/>
 									<Binding ElementName="Data1" Path="Text"/>
 									<Binding ElementName="Data2" Path="Text"/>
 									<Binding ElementName="Data3" Path="Text"/>
@@ -114,7 +114,7 @@
 						<ColumnDefinition/>
 						<ColumnDefinition/>
 					</Grid.ColumnDefinitions>
-					<TextBlock Text="This ComboBox is populated with types.  The converter finds application-level resources with these values as keys."
+					<TextBlock Text="This ComboBox is populated with System.Type objects.  The converter finds application-level resources with these values as keys."
 							   Grid.ColumnSpan="2" TextWrapping="Wrap"/>
 					<ComboBox x:Name="ValueToResourceSource" Grid.Row="1" SelectedIndex="0" Margin="0,5,5,0">
 						<x:Type Type="collections:IEnumerable"/>

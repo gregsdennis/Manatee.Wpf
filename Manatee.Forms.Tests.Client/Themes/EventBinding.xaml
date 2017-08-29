@@ -14,6 +14,8 @@
 					 Text="{x:Static system:Environment.NewLine}"/><Run
 					 Text="To be clear, this is not controlled by an event handler, but a command." FontWeight="Bold"/><Run
 					 Text="{x:Static system:Environment.NewLine}"/><Run
+					 Text="With this, you can now handle events in the view model!"/><Run
+					 Text="{x:Static system:Environment.NewLine}"/><Run
 					 Text="Try it out!"/>
 			</TextBlock>
 			<Border Grid.Row="1" BorderBrush="Blue" BorderThickness="2" CornerRadius="2" Background="DodgerBlue" Margin="10"
