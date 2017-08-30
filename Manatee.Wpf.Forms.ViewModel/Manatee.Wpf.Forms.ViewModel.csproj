@@ -63,5 +63,12 @@
     <Compile Include="Validation\StringPatternRule.cs" />
     <Compile Include="ViewModelBase.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="nuget.ps1" />
+    <None Include="project.nuspec" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>if "$(Configuration)" == "Release" (powershell "&amp; $(ProjectDir)\nuget.ps1" -projFile "$(ProjectDir)\$(ProjectName).csproj")</PostBuildEvent>
+  </PropertyGroup>
 </Project>

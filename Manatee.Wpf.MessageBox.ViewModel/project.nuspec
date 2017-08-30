@@ -15,7 +15,6 @@
           Without these ranges, the package will be tied to a specific version of
           the dependency, causing Nuget Version Hell.-->
       <!--<dependency id="Logging" version="[0.0,0.1)"/>-->
-      <dependency id="FontAwesome.WPF" version="[4.7.0.9,5)"/>
     </dependencies>
     <!-- ... -->
   </metadata>
