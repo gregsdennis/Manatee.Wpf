@@ -3,7 +3,8 @@
 					xmlns:local="clr-namespace:Manatee.Wpf.Tests.Client"
 					xmlns:cvtr="clr-namespace:Manatee.Wpf.Converters;assembly=Manatee.Wpf"
 					xmlns:sys="clr-namespace:System;assembly=mscorlib"
-					xmlns:collections="clr-namespace:System.Collections;assembly=mscorlib">
+					xmlns:collections="clr-namespace:System.Collections;assembly=mscorlib"
+					xmlns:fa="http://schemas.fontawesome.io/icons/">
 	<DataTemplate x:Key="Converters">
 		<DataTemplate.Resources>
 			<Style TargetType="{x:Type GroupBox}" BasedOn="{StaticResource {x:Type GroupBox}}">
@@ -11,120 +12,141 @@
 				<Setter Property="Padding" Value="5"/>
 			</Style>
 		</DataTemplate.Resources>
-		<StackPanel>
-			<GroupBox Header="Boolean -> Visibility" Margin="5">
-				<Grid>
-					<Grid.ColumnDefinitions>
-						<ColumnDefinition/>
-						<ColumnDefinition/>
-					</Grid.ColumnDefinitions>
-					<CheckBox x:Name="BoolToVisibilitySource" VerticalAlignment="Center" Content="Click me"/>
-					<StackPanel Grid.Column="1">
-						<TextBlock Text="FalseToCollapsed"
-								   Visibility="{Binding IsChecked, ElementName=BoolToVisibilitySource, Converter={x:Static cvtr:BoolToVisibility.FalseToCollapsed}}"/>
-						<TextBlock Text="TrueToCollapsed"
-								   Visibility="{Binding IsChecked, ElementName=BoolToVisibilitySource, Converter={x:Static cvtr:BoolToVisibility.TrueToCollapsed}}"/>
-						<TextBlock Text="FalseToHidden"
-								   Visibility="{Binding IsChecked, ElementName=BoolToVisibilitySource, Converter={x:Static cvtr:BoolToVisibility.FalseToHidden}}"/>
-						<TextBlock Text="TrueToHidden"
-								   Visibility="{Binding IsChecked, ElementName=BoolToVisibilitySource, Converter={x:Static cvtr:BoolToVisibility.TrueToHidden}}"/>
-					</StackPanel>
-				</Grid>
-			</GroupBox>
-			<GroupBox Header="Boolean Inversion">
-				<Grid>
-					<Grid.ColumnDefinitions>
-						<ColumnDefinition/>
-						<ColumnDefinition/>
-					</Grid.ColumnDefinitions>
-					<CheckBox x:Name="BooleanInversionSource" VerticalAlignment="Center" Content="Click me"/>
-					<TextBlock Grid.Column="1" Text="{Binding IsChecked, ElementName=BooleanInversionSource, Converter={x:Static cvtr:BooleanInverter.Instance}}"/>
-				</Grid>
-			</GroupBox>
-			<GroupBox Header="Enum Values &amp; Enum -> UI String">
-				<Grid>
-					<Grid.RowDefinitions>
-						<RowDefinition Height="Auto"/>
-						<RowDefinition/>
-					</Grid.RowDefinitions>
-					<Grid.ColumnDefinitions>
-						<ColumnDefinition/>
-						<ColumnDefinition/>
-					</Grid.ColumnDefinitions>
-					<TextBlock Grid.ColumnSpan="2">
+		<ScrollViewer MaxHeight="600">
+			<StackPanel>
+				<GroupBox Header="Boolean -> Visibility" Margin="5">
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition/>
+							<ColumnDefinition/>
+						</Grid.ColumnDefinitions>
+						<CheckBox x:Name="BoolToVisibilitySource" VerticalAlignment="Center" Content="Click me"/>
+						<StackPanel Grid.Column="1">
+							<TextBlock Text="FalseToCollapsed"
+									   Visibility="{Binding IsChecked, ElementName=BoolToVisibilitySource, Converter={x:Static cvtr:BoolToVisibility.FalseToCollapsed}}"/>
+							<TextBlock Text="TrueToCollapsed"
+									   Visibility="{Binding IsChecked, ElementName=BoolToVisibilitySource, Converter={x:Static cvtr:BoolToVisibility.TrueToCollapsed}}"/>
+							<TextBlock Text="FalseToHidden"
+									   Visibility="{Binding IsChecked, ElementName=BoolToVisibilitySource, Converter={x:Static cvtr:BoolToVisibility.FalseToHidden}}"/>
+							<TextBlock Text="TrueToHidden"
+									   Visibility="{Binding IsChecked, ElementName=BoolToVisibilitySource, Converter={x:Static cvtr:BoolToVisibility.TrueToHidden}}"/>
+						</StackPanel>
+					</Grid>
+				</GroupBox>
+				<GroupBox Header="Boolean Inversion">
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition/>
+							<ColumnDefinition/>
+						</Grid.ColumnDefinitions>
+						<CheckBox x:Name="BooleanInversionSource" VerticalAlignment="Center" Content="Click me"/>
+						<TextBlock Grid.Column="1" Text="{Binding IsChecked, ElementName=BooleanInversionSource, Converter={x:Static cvtr:BooleanInverter.Instance}}"/>
+					</Grid>
+				</GroupBox>
+				<GroupBox Header="Enum Values &amp; Enum -> UI String">
+					<Grid>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="Auto"/>
+							<RowDefinition/>
+						</Grid.RowDefinitions>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition/>
+							<ColumnDefinition/>
+						</Grid.ColumnDefinitions>
+						<TextBlock Grid.ColumnSpan="2">
 						<Run Text="The UI values are set in"/>
 						<Run Text="App.xaml.cs" FontStyle="Italic"/>
-					</TextBlock>
-					<ComboBox x:Name="EnumToUiStringSource" Grid.Row="1" SelectedIndex="0" Margin="0,5,0,0"
-							  ItemsSource="{Binding Source={x:Type sys:DayOfWeek}, Converter={x:Static cvtr:EnumValues.RawValues}}"/>
-					<TextBlock Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center"
-							   Text="{Binding SelectedItem, ElementName=EnumToUiStringSource, Converter={x:Static cvtr:EnumToUiString.Instance}}"/>
-				</Grid>
-			</GroupBox>
-			<GroupBox Header="Null -> Boolean">
-				
-			</GroupBox>
-			<GroupBox Header="Formatting Strings">
-				<StackPanel>
-					<Label Target="{Binding ElementName=FormatSource}" Content="Format"/>
-					<TextBox x:Name="FormatSource">
-						<TextBox.Text>
-							<Binding Path="DummyStringFormatValue" ElementName="Root" UpdateSourceTrigger="PropertyChanged">
-								<Binding.ValidationRules>
-									<local:StringFormatConverterExampleValidationRule/>
-								</Binding.ValidationRules>
-							</Binding>
-						</TextBox.Text>
-					</TextBox>
-					<Label Target="{Binding ElementName=Data1}" Content="Value {0}"/>
-					<TextBox x:Name="Data1"/>
-					<Label Target="{Binding ElementName=Data2}" Content="Value {1}"/>
-					<TextBox x:Name="Data2"/>
-					<Label Target="{Binding ElementName=Data3}" Content="Value {2}"/>
-					<TextBox x:Name="Data3"/>
-					<Border Margin="0,10,0,0" Padding="10" Background="#11000000" BorderBrush="#33000000" BorderThickness="1">
-						<TextBlock TextWrapping="Wrap">
-							<TextBlock.Text>
-								<MultiBinding Converter="{x:Static cvtr:StringFormatter.Instance}">
-									<!-- We need to run this first binding through the backing property
+						</TextBlock>
+						<ComboBox x:Name="EnumToUiStringSource" Grid.Row="1" SelectedIndex="0" Margin="0,5,0,0"
+								  ItemsSource="{Binding Source={x:Type sys:DayOfWeek}, Converter={x:Static cvtr:EnumValues.RawValues}}"/>
+						<TextBlock Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center"
+								   Text="{Binding SelectedItem, ElementName=EnumToUiStringSource, Converter={x:Static cvtr:EnumToUiString.Instance}}"/>
+					</Grid>
+				</GroupBox>
+				<GroupBox Header="Null -> Boolean" Visibility="Collapsed">
+
+				</GroupBox>
+				<GroupBox Header="Formatting Strings">
+					<StackPanel>
+						<Label Target="{Binding ElementName=FormatSource}" Content="Format"/>
+						<TextBox x:Name="FormatSource">
+							<TextBox.Text>
+								<Binding Path="DummyStringFormatValue" ElementName="Root" UpdateSourceTrigger="PropertyChanged">
+									<Binding.ValidationRules>
+										<local:StringFormatConverterExampleValidationRule/>
+									</Binding.ValidationRules>
+								</Binding>
+							</TextBox.Text>
+						</TextBox>
+						<Label Target="{Binding ElementName=Data1}" Content="Value {0}"/>
+						<TextBox x:Name="Data1"/>
+						<Label Target="{Binding ElementName=Data2}" Content="Value {1}"/>
+						<TextBox x:Name="Data2"/>
+						<Label Target="{Binding ElementName=Data3}" Content="Value {2}"/>
+						<TextBox x:Name="Data3"/>
+						<Border Margin="0,10,0,0" Padding="10" Background="#11000000" BorderBrush="#33000000" BorderThickness="1">
+							<TextBlock TextWrapping="Wrap">
+								<TextBlock.Text>
+									<MultiBinding Converter="{x:Static cvtr:StringFormatter.Instance}">
+										<!-- We need to run this first binding through the backing property
 									     instead of binding directly to the TextBox because even though
 									     validation occurs, the TextBox still allows entry which could
 									     result in an invalid format, throwing an exception. The backing
 									     property only updates if validation succeeds, however. -->
-									<Binding ElementName="Root" Path="DummyStringFormatValue"/>
-									<Binding ElementName="Data1" Path="Text"/>
-									<Binding ElementName="Data2" Path="Text"/>
-									<Binding ElementName="Data3" Path="Text"/>
-								</MultiBinding>
-							</TextBlock.Text>
-						</TextBlock>
-					</Border>
-				</StackPanel>
-			</GroupBox>
-			<GroupBox Header="String -> Null State">
+										<Binding ElementName="Root" Path="DummyStringFormatValue"/>
+										<Binding ElementName="Data1" Path="Text"/>
+										<Binding ElementName="Data2" Path="Text"/>
+										<Binding ElementName="Data3" Path="Text"/>
+									</MultiBinding>
+								</TextBlock.Text>
+							</TextBlock>
+						</Border>
+					</StackPanel>
+				</GroupBox>
+				<GroupBox Header="String is Null/Empty/Whitespace" Visibility="Collapsed">
 
-			</GroupBox>
-			<GroupBox Header="Value -> Resource">
-				<Grid>
-					<Grid.RowDefinitions>
-						<RowDefinition Height="Auto"/>
-						<RowDefinition/>
-					</Grid.RowDefinitions>
-					<Grid.ColumnDefinitions>
-						<ColumnDefinition/>
-						<ColumnDefinition/>
-					</Grid.ColumnDefinitions>
-					<TextBlock Text="This ComboBox is populated with System.Type objects.  The converter finds application-level resources with these values as keys."
-							   Grid.ColumnSpan="2" TextWrapping="Wrap"/>
-					<ComboBox x:Name="ValueToResourceSource" Grid.Row="1" SelectedIndex="0" Margin="0,5,5,0">
-						<x:Type Type="collections:IEnumerable"/>
-						<x:Type Type="collections:ICollection"/>
-						<x:Type Type="collections:IList"/>
-					</ComboBox>
-					<Border Grid.Row="1" Grid.Column="1" Margin="5,5,0,0"
-							Background="{Binding SelectedItem, ElementName=ValueToResourceSource, Converter={x:Static cvtr:ValueToResource.Instance}}"/>
-				</Grid>
-			</GroupBox>
-		</StackPanel>
+				</GroupBox>
+				<GroupBox Header="Find a XAML resource keyed by object">
+					<Grid>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="Auto"/>
+							<RowDefinition/>
+						</Grid.RowDefinitions>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition/>
+							<ColumnDefinition/>
+						</Grid.ColumnDefinitions>
+						<TextBlock Text="This ComboBox is populated with System.Type objects.  The converter finds application-level resources with these values as keys."
+								   Grid.ColumnSpan="2" TextWrapping="Wrap"/>
+						<ComboBox x:Name="ValueToResourceSource" Grid.Row="1" SelectedIndex="0" Margin="0,5,5,0">
+							<x:Type Type="collections:IEnumerable"/>
+							<x:Type Type="collections:ICollection"/>
+							<x:Type Type="collections:IList"/>
+						</ComboBox>
+						<Border Grid.Row="1" Grid.Column="1" Margin="5,5,0,0"
+								Background="{Binding SelectedItem, ElementName=ValueToResourceSource, Converter={x:Static cvtr:ValueToResource.Instance}}"/>
+					</Grid>
+				</GroupBox>
+				<GroupBox Header="Object Equality">
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition/>
+							<ColumnDefinition Width="Auto"/>
+							<ColumnDefinition/>
+						</Grid.ColumnDefinitions>
+						<TextBox x:Name="EqualityA"/>
+						<fa:FontAwesome Grid.Column="1" Icon="Check" Foreground="Green" Margin="10,0" VerticalAlignment="Center" FontSize="16">
+							<fa:FontAwesome.Visibility>
+								<MultiBinding Converter="{cvtr:Aggregator {x:Static cvtr:Equality.AreEqual}, {x:Static cvtr:BoolToVisibility.FalseToHidden}}">
+									<Binding ElementName="EqualityA" Path="Text"/>
+									<Binding ElementName="EqualityB" Path="Text"/>
+								</MultiBinding>
+							</fa:FontAwesome.Visibility>
+						</fa:FontAwesome>
+						<TextBox x:Name="EqualityB" Grid.Column="2"/>
+					</Grid>
+				</GroupBox>
+			</StackPanel>
+		</ScrollViewer>
 	</DataTemplate>
 </ResourceDictionary>

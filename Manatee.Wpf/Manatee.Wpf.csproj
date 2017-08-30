@@ -38,6 +38,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -88,6 +89,7 @@
     </Compile>
     <Compile Include="Converters\EnumToUiString.cs" />
     <Compile Include="Converters\EnumValues.cs" />
+    <Compile Include="Converters\EqualityConverter.cs" />
     <Compile Include="ErrorBanner.xaml.cs">
       <DependentUpon>ErrorBanner.xaml</DependentUpon>
     </Compile>
