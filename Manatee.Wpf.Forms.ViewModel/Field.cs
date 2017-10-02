@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Manatee.Wpf.ViewModel;
 
 namespace Manatee.Wpf.Forms.ViewModel
 {

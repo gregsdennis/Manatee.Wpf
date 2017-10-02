@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Input;
+using Manatee.Wpf.ViewModel;
 
 namespace Manatee.Wpf.MessageBox.ViewModel
 {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Manatee.Wpf.Forms.ViewModel
+namespace Manatee.Wpf.ViewModel
 {
 	public interface IPlatformProvider
 	{

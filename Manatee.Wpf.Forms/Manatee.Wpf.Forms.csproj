@@ -95,6 +95,10 @@
       <Project>{3142e4c0-13e3-4431-a988-4bbac7b26c66}</Project>
       <Name>Manatee.Wpf.Forms.ViewModel</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Manatee.Wpf.ViewModel\Manatee.Wpf.ViewModel.csproj">
+      <Project>{01535993-B41E-4B5D-BF82-31983EF0E1E9}</Project>
+      <Name>Manatee.Wpf.ViewModel</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Manatee.Wpf\Manatee.Wpf.csproj">
       <Project>{9c008856-f374-43b1-b767-a2bc2598359d}</Project>
       <Name>Manatee.Wpf</Name>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
+using Manatee.Wpf.ViewModel;
 
 namespace Manatee.Wpf.Forms.ViewModel
 {

@@ -1,4 +1,4 @@
-﻿namespace Manatee.Wpf.Forms.ViewModel
+﻿namespace Manatee.Wpf.ViewModel
 {
 	public static class PlatformProvider
 	{

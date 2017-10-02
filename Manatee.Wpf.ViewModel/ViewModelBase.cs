@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using JetBrains.Annotations;
 
-namespace Manatee.Wpf.Forms.ViewModel
+namespace Manatee.Wpf.ViewModel
 {
 	/// <summary>
 	/// A base class that implements the infrastructure for property change notification and automatically performs UI thread marshalling.

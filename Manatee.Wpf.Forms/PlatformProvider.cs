@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 using System.Windows.Threading;
-using Manatee.Wpf.Forms.ViewModel;
+using Manatee.Wpf.ViewModel;
 
 namespace Manatee.Wpf.Forms
 {
@@ -9,8 +9,8 @@ namespace Manatee.Wpf.Forms
 	{
 		public static void Initialize()
 		{
-			if (ViewModel.PlatformProvider.Current == null)
-				ViewModel.PlatformProvider.Current = new PlatformProvider();
+			if (Wpf.ViewModel.PlatformProvider.Current == null)
+			    Wpf.ViewModel.PlatformProvider.Current = new PlatformProvider();
 		}
 		private PlatformProvider() { }
 

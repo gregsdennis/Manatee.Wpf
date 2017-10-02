@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace Manatee.Wpf.MessageBox.ViewModel
+namespace Manatee.Wpf.ViewModel
 {
 	/// <summary>
 	/// To register commands in MMVM pattern
