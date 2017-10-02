@@ -55,7 +55,6 @@
     <Compile Include="MessageBoxView.xaml.cs">
       <DependentUpon>MessageBoxView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PlatformProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

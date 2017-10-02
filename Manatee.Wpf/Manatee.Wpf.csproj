@@ -101,6 +101,7 @@
     <Compile Include="Converters\NullToBoolean.cs" />
     <Compile Include="LoadableContent.cs" />
     <Compile Include="NumericTextBox.cs" />
+    <Compile Include="PlatformProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -128,6 +129,12 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Manatee.Wpf.ViewModel\Manatee.Wpf.ViewModel.csproj">
+      <Project>{01535993-B41E-4B5D-BF82-31983EF0E1E9}</Project>
+      <Name>Manatee.Wpf.ViewModel</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

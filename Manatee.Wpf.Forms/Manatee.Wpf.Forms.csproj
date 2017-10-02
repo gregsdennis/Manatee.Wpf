@@ -64,7 +64,6 @@
     <Compile Include="Converters\RequiredValue.cs" />
     <Compile Include="FieldTemplateSelector.cs" />
     <Compile Include="Form.cs" />
-    <Compile Include="PlatformProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

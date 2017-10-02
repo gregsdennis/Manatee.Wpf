@@ -3,14 +3,14 @@ using System.Windows.Input;
 using System.Windows.Threading;
 using Manatee.Wpf.ViewModel;
 
-namespace Manatee.Wpf.Forms
+namespace Manatee.Wpf
 {
-	internal class PlatformProvider : IPlatformProvider
+	public class PlatformProvider : IPlatformProvider
 	{
 		public static void Initialize()
 		{
-			if (Wpf.ViewModel.PlatformProvider.Current == null)
-			    Wpf.ViewModel.PlatformProvider.Current = new PlatformProvider();
+			if (ViewModel.PlatformProvider.Current == null)
+			    ViewModel.PlatformProvider.Current = new PlatformProvider();
 		}
 		private PlatformProvider() { }
 
