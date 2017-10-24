@@ -52,7 +52,7 @@
     <Compile Include="InitializableViewModel.cs" />
     <Compile Include="IObservableCollection.cs" />
     <Compile Include="IPlatformProvider.cs" />
-    <Compile Include="Jetbrains.Annotations.cs" />
+    <Compile Include="Properties\Jetbrains.Annotations.cs" />
     <Compile Include="MultiCommand.cs" />
     <Compile Include="PlatformProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

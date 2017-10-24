@@ -6,9 +6,7 @@
 
 		public string Validate(T value)
 		{
-			if (!Passes(value))
-				return ErrorMessage;
-			return null;
+		    return !Passes(value) ? ErrorMessage : null;
 		}
 
 		protected abstract bool Passes(T value);

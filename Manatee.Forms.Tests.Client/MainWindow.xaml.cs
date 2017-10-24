@@ -1,4 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using Manatee.Wpf.Forms.ViewModel;
@@ -122,7 +125,14 @@ namespace Manatee.Wpf.Tests.Client
 		// Using a DependencyProperty as the backing store for DummyStringValue.  This enables animation, styling, binding, etc...
 		public static readonly DependencyProperty DummyStringFormatValueProperty =
 			DependencyProperty.Register("DummyStringFormatValue", typeof(string), typeof(MainWindow), new PropertyMetadata(string.Empty));
-		
+
+		#endregion
+
+		#region MillerColumns
+
+
+		public IEnumerable<FileSystemObject> HierarchicalDataSource { get; } = new List<FileSystemObject> {new FileSystemObject {Name = @"C:\"}};
+
 		#endregion
 
 		#region Other Controls

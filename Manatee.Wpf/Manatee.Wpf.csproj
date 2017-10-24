@@ -73,6 +73,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Themes\MillerColumnView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\NumericTextBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -100,6 +104,7 @@
     <Compile Include="Converters\NullImage.cs" />
     <Compile Include="Converters\NullToBoolean.cs" />
     <Compile Include="LoadableContent.cs" />
+    <Compile Include="MillerColumnView.cs" />
     <Compile Include="NumericTextBox.cs" />
     <Compile Include="PlatformProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">

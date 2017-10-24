@@ -3,5 +3,6 @@
 		<ResourceDictionary Source="pack://application:,,,/Manatee.Wpf;component/Themes/Automation.xaml"/>
 		<ResourceDictionary Source="pack://application:,,,/Manatee.Wpf;component/Themes/LoadableContent.xaml"/>
 		<ResourceDictionary Source="pack://application:,,,/Manatee.Wpf;component/Themes/NumericTextBox.xaml"/>
+		<ResourceDictionary Source="pack://application:,,,/Manatee.Wpf;component/Themes/MillerColumnView.xaml"/>
 	</ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

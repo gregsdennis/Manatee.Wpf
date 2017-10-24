@@ -5,7 +5,7 @@
 		public decimal Min { get; }
 		public bool IsInclusive { get; }
 
-		public NumericMinRule(decimal min, bool isInclusive)
+		public NumericMinRule(decimal min, bool isInclusive = true)
 		{
 			Min = min;
 			IsInclusive = isInclusive;

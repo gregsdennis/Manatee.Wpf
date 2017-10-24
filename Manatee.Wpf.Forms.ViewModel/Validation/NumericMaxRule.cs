@@ -5,7 +5,7 @@
 		public decimal Max { get; }
 		public bool IsInclusive { get; }
 
-		public NumericMaxRule(decimal max, bool isInclusive)
+		public NumericMaxRule(decimal max, bool isInclusive = true)
 		{
 			Max = max;
 			IsInclusive = isInclusive;
