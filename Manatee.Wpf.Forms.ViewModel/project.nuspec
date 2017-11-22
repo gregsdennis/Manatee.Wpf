@@ -16,6 +16,10 @@
           the dependency, causing Nuget Version Hell.-->
       <!--<dependency id="Logging" version="[0.0,0.1)"/>-->
     </dependencies>
+    <releaseNotes>
+      v1.1.0
+      Updated NumericField to Field&lt;decimal?&gt; instead of Field&lt;double?&gt;.
+    </releaseNotes>
     <!-- ... -->
   </metadata>
   <!-- Optional 'files' node -->

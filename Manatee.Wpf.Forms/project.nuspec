@@ -18,6 +18,11 @@
       <dependency id="Manatee.WPF" version="[1,2)"/>
       <dependency id="Manatee.WPF.Forms.ViewModel" version="[1,2)"/>
     </dependencies>
+    <releaseNotes>
+      v1.1.0
+      Updated NumericTextBox to use decimal? instead of double?.
+      Added customization to FieldTemplateSelector.
+    </releaseNotes>
     <!-- ... -->
   </metadata>
   <!-- Optional 'files' node -->

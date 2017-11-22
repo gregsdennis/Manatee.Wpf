@@ -1,6 +1,6 @@
 ﻿namespace Manatee.Wpf.Forms.ViewModel
 {
-	public class NumericField : Field<double?>
+	public class NumericField : Field<decimal?>
 	{
 		private string _stringFormat;
 
@@ -17,7 +17,7 @@
 
 		public NumericField()
 			: this(null) { }
-		public NumericField(double? initialValue)
+		public NumericField(decimal? initialValue)
 			: base(initialValue)
 		{
 			StringFormat = "G";
