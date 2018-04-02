@@ -18,8 +18,8 @@
 		protected override bool Passes(string value)
 		{
 			return IsInclusive
-				       ? value.Length <= Max
-				       : value.Length < Max;
+				       ? value?.Length <= Max
+				       : value?.Length < Max;
 		}
 	}
 }

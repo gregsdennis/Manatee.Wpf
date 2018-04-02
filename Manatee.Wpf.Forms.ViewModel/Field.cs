@@ -9,6 +9,7 @@ namespace Manatee.Wpf.Forms.ViewModel
 		private bool _hasError;
 		private IEnumerable<string> _errorMessages;
 		private string _label;
+		private bool _requiresChange;
 
 		public bool HasChanged
 		{
@@ -17,6 +18,17 @@ namespace Manatee.Wpf.Forms.ViewModel
 			{
 				if (value == _hasChanged) return;
 				_hasChanged = value;
+				NotifyOfPropertyChange();
+			}
+		}
+
+		public bool RequiresChange
+		{
+			get { return _requiresChange; }
+			set
+			{
+				if (value == _requiresChange) return;
+				_requiresChange = value;
 				NotifyOfPropertyChange();
 			}
 		}
@@ -86,7 +98,7 @@ namespace Manatee.Wpf.Forms.ViewModel
 
 		public override void Validate()
 		{
-			if (AreEqual(Value, _initialValue))
+			if (!RequiresChange && AreEqual(Value, _initialValue))
 			{
 				HasChanged = false;
 				ErrorMessages = null;
